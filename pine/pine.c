@@ -1,5 +1,9 @@
 int pine(unsigned n)
 {
+    if(n<3)
+    {
+        return 1;
+    }
     int trunk = n/2;
     int max_half = (n-1); // tronc pas compris
     int i;
@@ -31,9 +35,5 @@ int pine(unsigned n)
         putchar('\n');
     }
 
-    if(n<3)
-    {
-        return 1;
-    }
     return 0;
 }
