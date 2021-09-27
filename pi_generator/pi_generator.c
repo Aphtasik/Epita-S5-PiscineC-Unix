@@ -1,20 +1,16 @@
-#include<stdio.h>
-
-double pi_generator_rec(int precision, int lim)
+double pi_generator_rec(double n, double res)
 {
-    if(precision == lim)
+    if(n==0)
     {
-        return (1+(lim/lim*2+1));
+        return 1;
     }
-    return 1+(precision/precision*2+1)*pi_generator_rec(precision+1, lim);
+    else
+    {
+        return (1+res/(res*2+1)*pi_generator_rec(n-1, res+1));
+    }
 }
 
 double pi_generator(int precision)
 {
-    return pi_generator_rec(1, precision);
-}
-
-int main()
-{
-    printf("%f\n",pi_generator(50));
+    return (2*pi_generator_rec((double)precision, 1));
 }
