@@ -13,10 +13,12 @@ int binary_search(const int vec[], size_t size, int elt)
         if (vec[mid] == elt) 
         {
             return mid;
-        } else if (vec[mid] < elt) 
+        } 
+        else if (vec[mid] < elt) 
         {
             left = mid + 1;
-        } else 
+        } 
+        else 
         {
             right = mid - 1;
         }
