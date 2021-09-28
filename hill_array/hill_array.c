@@ -33,4 +33,3 @@ int top_of_the_hill(int tab[], size_t len)
 
     return left;
 }
-

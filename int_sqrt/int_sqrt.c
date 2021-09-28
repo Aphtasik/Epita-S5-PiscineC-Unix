@@ -21,4 +21,3 @@ int int_sqrt(int n)
         return i - 1;
     }
 }
-

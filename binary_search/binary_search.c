@@ -23,5 +23,3 @@ int binary_search(const int vec[], size_t size, int elt)
     }
     return -1;
 }
-
-

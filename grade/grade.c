@@ -25,4 +25,3 @@ void grade(char g)
             puts("Call a wild ACU");
     };
 }
-

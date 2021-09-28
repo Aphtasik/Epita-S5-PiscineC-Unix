@@ -15,4 +15,3 @@ int my_round(float n)
 
     return neg ? -n : n;
 }
-

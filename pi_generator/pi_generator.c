@@ -14,4 +14,3 @@ double pi_generator(int precision)
     double dprec = precision;
     return (2 * pi_generator_rec(dprec, 1));
 }
-

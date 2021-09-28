@@ -9,4 +9,3 @@ unsigned long fact(unsigned n)
         return (n * fact(n - 1));
     }
 }
-

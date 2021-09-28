@@ -12,4 +12,3 @@ unsigned int digit(int n, int k)
         return n % 10;
     }
 }
-
