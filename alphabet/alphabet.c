@@ -1,12 +1,17 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int main()
+int main() 
 {
-    for(int i = 0; i<26; i++)
+    char letter;
+
+    for (int i = 0; i < 25; i++) 
     {
-        putchar((char)(i+97));
+        letter = i + 97;
+        putchar(letter);
         putchar(' ');
     }
+    putchar('z');
     putchar('\n');
     return 0;
 }
+
