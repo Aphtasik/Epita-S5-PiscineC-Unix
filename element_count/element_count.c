@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-size_t element_count(int *begin, int *end) 
+size_t element_count(int *begin, int *end)
 {
-    return (end - begin) / sizeof(int);
+    return (end - begin);
 }
