@@ -1,5 +1,4 @@
 #include <stddef.h>
-
 char *my_strcpy(char *dest, const char *source)
 {
     size_t i;
