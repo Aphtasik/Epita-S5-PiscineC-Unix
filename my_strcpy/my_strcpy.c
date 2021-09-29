@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 char *my_strcpy(char *dest, const char *source)
 {
     size_t i;
@@ -6,7 +8,7 @@ char *my_strcpy(char *dest, const char *source)
     {
         return NULL;
     }
-    for (i = 0 ; src[i] != '\0' ; i++)
+    for (i = 0; src[i] != '\0'; i++)
     {
         dest[i] = src[i];
     }
