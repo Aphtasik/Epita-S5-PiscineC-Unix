@@ -1,6 +1,6 @@
-void rot_x(char *s, int x) 
+void rot_x(char *s, int x)
 {
-    if (s) 
+    if (s)
     {
         int i = 0;
         if (x <= -26)
@@ -10,26 +10,26 @@ void rot_x(char *s, int x)
             x = - x;
         }
 
-        while (s[i] != '\0') 
+        while (s[i] != '\0')
         {
-            if (s[i] <= 'Z' && s[i] >= 'A') 
+            if (s[i] <= 'Z' && s[i] >= 'A')
             {
-                if (x > 0) 
+                if (x > 0)
                 {
                     s[i] = (s[i] + x - 65) % 26 + 65;
                 }
-                else 
+                else
                 {
                     s[i] = (s[i] + x - 65 + 26) % 26 + 65;
                 }
-            } 
-            else if (s[i] <= 'z' && s[i] >= 'a') 
+            }
+            else if (s[i] <= 'z' && s[i] >= 'a')
             {
-                if (x > 0) 
+                if (x > 0)
                 {
                     s[i] = (s[i] + x - 97) % 26 + 97;
                 }
-                else 
+                else
                 {
                     s[i] = (s[i] + x - 97 + 26) % 26 + 97;
                 }

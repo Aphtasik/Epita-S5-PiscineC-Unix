@@ -1,11 +1,12 @@
-unsigned int digit(int n, int k) 
+unsigned int digit(int n, int k)
 {
-    if (n <= 0 || k <= 0) {
-        return 0;
-    } 
-    else 
+    if (n <= 0 || k <= 0)
     {
-        for (int i = 0; i < k - 1; i++) 
+        return 0;
+    }
+    else
+    {
+        for (int i = 0; i < k - 1; i++)
         {
             n /= 10;
         }

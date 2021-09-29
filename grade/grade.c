@@ -1,8 +1,9 @@
 #include <stdio.h>
 
-void grade(char g) 
+void grade(char g)
 {
-    switch (g) {
+    switch (g)
+    {
         case 'A':
             puts("Excellent");
             break;

@@ -1,30 +1,30 @@
 #include <stdio.h>
 
-int top_of_the_hill(int tab[], size_t len) 
+int top_of_the_hill(int tab[], size_t len)
 {
     int left = 0;
     int right = len - 1;
 
-    while (left != right) 
+    while (left != right)
     {
-        if (tab[left] < tab[right]) 
+        if (tab[left] < tab[right])
         {
-            if (tab[left] <= tab[left + 1]) 
+            if (tab[left] <= tab[left + 1])
             {
                 left++;
-            } 
-            else 
+            }
+            else
             {
                 return -1;
             }
-        } 
-        else 
+        }
+        else
         {
-            if (tab[right - 1] >= tab[right]) 
+            if (tab[right - 1] >= tab[right])
             {
                 right--;
-            } 
-            else 
+            }
+            else
             {
                 return -1;
             }

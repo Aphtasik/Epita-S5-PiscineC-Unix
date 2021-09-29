@@ -1,12 +1,12 @@
 int palindrome(const char *s)
 {
-    if (!s) 
+    if (!s)
     {
         return 0;
     }
 
     int len = 0;
-    while (s[len] != '\0') 
+    while (s[len] != '\0')
     {
         len++;
     }
@@ -14,8 +14,7 @@ int palindrome(const char *s)
     int left = 0;
     int right = len - 1;
 
-    while (s[left] < 48 || (s[left] > 57 && s[left] < 65) ||
-           (s[left] > 90 && s[left] < 97) || s[left] > 122) 
+    while (s[left] < 48 || (s[left] > 57 && s[left] < 65) || (s[left] > 90 && s[left] < 97) || s[left] > 122)
     {
         left++;
     }

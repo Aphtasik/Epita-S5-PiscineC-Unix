@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-int main() 
+int main()
 {
     char letter;
 
-    for (int i = 0; i < 25; i++) 
+    for (int i = 0; i < 25; i++)
     {
         letter = i + 97;
         putchar(letter);

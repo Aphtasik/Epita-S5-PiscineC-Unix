@@ -1,29 +1,29 @@
 #include <stdio.h>
 
-void print_matches(char table_match[]) 
+void print_matches(char table_match[])
 {
-    for (int i = 0; i < 26; i++) 
+    for (int i = 0; i < 26; i++)
     {
-        if (table_match[i] != '0') 
+        if (table_match[i] != '0')
         {
             printf("%c %c\n", (char)(i + 65), table_match[i]);
         }
     }
 }
 
-int get_nb_char(const char table[]) 
+int get_nb_char(const char table[])
 {
     int nb_letters = 0;
 
     // Get nb of unique char
-    while (table[nb_letters] != '\0') 
+    while (table[nb_letters] != '\0')
     {
         nb_letters++;
     }
     return nb_letters;
 }
 
-void freq_analysis(const char text[], const char table[]) 
+void freq_analysis(const char text[], const char table[])
 {
     int letters[26];
     char table_match[26];
@@ -35,7 +35,7 @@ void freq_analysis(const char text[], const char table[])
     int max = 0;
 
     // Init arrays
-    for (i = 0; i < 26; i++) 
+    for (i = 0; i < 26; i++)
     {
         table_match[i] = '0';
         letters[i] = 0;
@@ -46,18 +46,18 @@ void freq_analysis(const char text[], const char table[])
 
     // Fill histogram
     i = 0;
-    while (text[i] != '\0') 
+    while (text[i] != '\0')
     {
         letters[(int)text[i] - 65]++;
         i++;
     }
 
     // Match chars
-    while (table_index < nb_letters) 
+    while (table_index < nb_letters)
     {
-        for (i = 0; i < 26; i++) 
+        for (i = 0; i < 26; i++)
         {
-            if (letters[i] > max) 
+            if (letters[i] > max)
             {
                 max_i = i;
                 max = letters[i];

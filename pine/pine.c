@@ -1,24 +1,24 @@
 #include <stdio.h>
 
-int pine(unsigned n) 
+int pine(unsigned n)
 {
-    if (n < 3) 
+    if (n < 3)
     {
         return 1;
     }
 
-    unsigned max_half = (n - 1);  // tronc pas compris
+    unsigned max_half = (n - 1);
     unsigned i;
     unsigned j;
 
     // tronc
-    for (i = 0; i < n; i++) 
+    for (i = 0; i < n; i++)
     {
-        for (j = (n - 1) - i; j > 0; j--) 
+        for (j = (n - 1) - i; j > 0; j--)
         {
             putchar(' ');
         }
-        for (j = 0; j < 2 * i + 1; j++) 
+        for (j = 0; j < 2 * i + 1; j++)
         {
             putchar('*');
         }
@@ -27,9 +27,9 @@ int pine(unsigned n)
     }
 
     // pied
-    for (i = 0; i < n / 2; i++) 
+    for (i = 0; i < n / 2; i++)
     {
-        for (j = 0; j < n - 1; j++) 
+        for (j = 0; j < n - 1; j++)
         {
             putchar(' ');
         }
