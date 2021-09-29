@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-void display_square(int width) 
+void display_square(int width)
 {
-    if (width > 0)
+    if (width > 1)
     {
-        if (width % 2 == 0) 
+        if (width % 2 == 0)
         {
             width++;
         }
@@ -12,16 +12,16 @@ void display_square(int width)
         int i;
         int j;
 
-        for (i = 0; i < width; i++) 
+        for (i = 0; i < width; i++)
         {
             putchar('*');
         }
         putchar('\n');
 
-        for (i = 0; i < ((width + 1) / 2) - 2; i++) 
+        for (i = 0; i < ((width + 1) / 2) - 2; i++)
         {
             putchar('*');
-            for (j = 0; j < width - 2; j++) 
+            for (j = 0; j < width - 2; j++)
             {
                 putchar(' ');
             }
@@ -29,10 +29,15 @@ void display_square(int width)
             putchar('\n');
         }
 
-        for (i = 0; i < width; i++) 
+        for (i = 0; i < width; i++)
         {
             putchar('*');
         }
+        putchar('\n');
+    }
+    if (width == 1)
+    {
+        putchar('*');
         putchar('\n');
     }
 }
