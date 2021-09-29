@@ -20,7 +20,7 @@ struct int_vector int_vector_inser_sort(struct int_vector vec)
         j = i - 1;
         while (j >= 0 && vec.data[i] < vec.data[j])
         {
-            swap(vec, j, j + 1);
+            vec = swap(vec, j, j + 1);
             j--;
         }
         vec.data[j + 1] = vec.data[i];
