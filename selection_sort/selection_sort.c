@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -9,13 +7,11 @@ void swap(int *a, int *b)
 
 unsigned array_min(const int arr[], unsigned start, unsigned size)
 {
-    int min = arr[start];
     unsigned min_i = start;
-    for(int i = start; i < size; i++)
+    for (unsigned i = start; i < size; i++)
     {
-        if (arr[i] < min)
+        if (arr[i] < arr[min_i])
         {
-            min = arr[i];
             min_i = i;
         }
     }
@@ -24,23 +20,12 @@ unsigned array_min(const int arr[], unsigned start, unsigned size)
 
 void selection_sort(int arr[], unsigned size)
 {
-    int i;
-    int min;
+    unsigned i;
+    unsigned min;
 
     for(i = 0; i < size - 1; i++)
     {
-        min = array_min(arr, i + 1, size);
-        printf("%d\n", min);
+        min = array_min(arr, i, size);
         swap(&arr[i], &arr[min]);
     }
-}
-
-int main(void)
-{
-    const unsigned size = 6;
-    int arr[] = { 3, 4, 1, 2, 6, 5 };
-    unsigned expected[] = { 1, 2, 3, 4, 5, 6};
-    selection_sort(arr, size);
-    for (unsigned i = 0; i < size; ++i)
-        printf("%u: %d = %d\n", i, arr[i], expected[i]);
 }
