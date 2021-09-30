@@ -1,20 +1,37 @@
-#include "my_strstr.h"
+int compareString(const char *haystack, const char *needle)
+{
+    while (*haystack && *needle)
+    {
+        if (*haystack != *needle)
+        {
+            return 0;
+        }
+        haystack++;
+        needle++;
+    }
+    return (*needle == '\0');
+}
 
 int my_strstr(const char *haystack, const char *needle)
 {
-    int first_match = 0;
-    int i = 0;
-    int j = 0;
-
-    while (haystack[i] != '\0')
+    if (needle == NULL || *needle == '\0')
     {
-        if (haystack[i] == needle[first_match])
+        return 0;
+    }
+
+    int i = 0;
+
+    while (*haystack != '\0')
+    {
+        if (*haystack == *needle) 
         {
-            j = i;
-            while (haystack[j] != '\0' && needle[first_match] != '\0')
+            if (compareString(haystack, needle))
             {
-                if ()
+                return i; 
             }
         }
+        haystack++;
+        i++;
     }
+    return -1;
 }
