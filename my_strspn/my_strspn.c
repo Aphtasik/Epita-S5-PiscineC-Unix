@@ -21,7 +21,7 @@ size_t my_strspn(const char *s, const char *accept)
         {
             j++;
         }
-        
+
         if (accept[j] == s[i])
         {
             isMatch = 1;
