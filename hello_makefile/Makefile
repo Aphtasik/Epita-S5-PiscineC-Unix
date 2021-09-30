@@ -1,4 +1,7 @@
 GREETING="Hello World!"
 
-all:
+all: hello
+	@echo "Hello again"
+
+hello:
 	@echo $(GREETING)
