@@ -1,6 +1,4 @@
 #include "vigenere.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 int isChar(char c)
 {
@@ -30,13 +28,15 @@ char convertUpperPositive(char a, char b, int cypher)
     {
         return (char)((upper_a + upper_b) % 26 + 65);
     }
-    else if (upper_a - upper_b > 0)
+    else if (upper_b - upper_a >= 0)
     {
         return (char)((upper_b - upper_a) % 26 + 65);
     }
-    int diff = (upper_b - upper_a);
-    return (char)(26-diff  + 65);
-
+    else
+    {
+        int diff = (upper_b - upper_a);
+        return (char)((26 + diff) % 26 + 65);
+    }
 }
 
 void cipher(const char *key, const char *msg, char *res)
@@ -81,14 +81,5 @@ void decipher(const char *key, const char *msg, char *res)
         msg_i++;
     }
     res[msg_i] = '\0';
-    
-}
 
-int main(void)
-{
-    char *res = malloc(100);
-    printf("The temperature here is equal to your grade!\n");
-    decipher("Penguin", "ILR ZYUCTVNZOZR WIEK CA RFYNR NW LDYE MLIQT", res);
-    printf("%s\n", res);
-    printf("%c\n", convertUpperPositive('P', 'I', 0));
 }
