@@ -7,9 +7,9 @@ char *my_strcpy(char *dest, const char *source)
     {
         return NULL;
     }
-    for (i = 0; src[i] != '\0'; i++)
+    for (i = 0; source[i] != '\0'; i++)
     {
-        dest[i] = src[i];
+        dest[i] = source[i];
     }
     dest[i] = '\0';
 
