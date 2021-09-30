@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 int *my_calloc(size_t size, int init)
 {
