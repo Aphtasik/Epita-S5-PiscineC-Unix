@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -14,7 +12,7 @@ int partition(int *tab, int left, int right)
 
     for(int j = left; j < right; j++)
     {
-        if (tab[j] <= pivot)
+        if (tab[j] < pivot)
         {
             i++;
             swap(&tab[i], &tab[j]);
@@ -25,26 +23,23 @@ int partition(int *tab, int left, int right)
     return (i + 1);
 }
 
-void quicksort(int *tab, int len)
+void quicksortBorned(int *tab, int left, int right)
 {
-    int partition;
-    int i;
-    int j;
-    int r_len;
-    int l_len;
-    int *r_array, *l_array;
-
-    if (len != 1 && len != 0)
+    if (left < right)
     {
-        int left = tab;
-        int right = tab + len;
-
-        quicksortBorned(tab, left, right);
+        int pivot = partition(tab, left, right);
+        quicksortBorned(tab, left, pivot - 1);
+        quicksortBorned(tab, left + 1, right);
     }
 }
 
-int main()
+void quicksort(int *tab, int len)
 {
-    int tab[] = { 1, 3, 2, 4 };
-    quicksort(tab, 4);
+    if (len != 1 && len != 0)
+    {
+        int left = 0;
+        int right = len - 1;
+
+        quicksortBorned(tab, left, right);
+    }
 }
