@@ -1,4 +1,4 @@
-double pi_generator_rec(double n, double res) 
+double pi_generator_rec(double n, double res)
 {
     if (n == 0)
     {
