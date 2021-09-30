@@ -5,9 +5,9 @@ void rot_x(char *s, int x)
         int i = 0;
         if (x <= -26)
         {
-            x = - x;
+            x = -x;
             x = x % 26;
-            x = - x;
+            x = -x;
         }
 
         while (s[i] != '\0')
