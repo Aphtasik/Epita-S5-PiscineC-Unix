@@ -4,8 +4,8 @@
 static struct int_vector swap(struct int_vector vec, size_t i, size_t j)
 {
     int temp = vec.data[i];
-    data[i] = data[j];
-    data[j] = temp;
+    vec.data[i] = vec.data[j];
+    vec.data[j] = temp;
 
     return vec;
 }
