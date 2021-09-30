@@ -11,18 +11,16 @@ int my_atoi(const char *str)
     {
         i++;
     }
-    
+
     if (str[i] < '0' || str[i] > '9')
     {
-        switch (str[i])
+        if (str[i] == '-')
         {
-            case '-':
-                isNeg = 1;
-                break;
-            case '+':
-                break;
-            default:
-                return 0;
+            isNeg = 1;
+        }
+        else if (str[i] != '+')
+        {
+            return 0;
         }
         i++;
     }
@@ -38,5 +36,5 @@ int my_atoi(const char *str)
         i++;
     }
 
-    return isNeg ? (- res) : res;
+    return isNeg ? (-res) : res;
 }
