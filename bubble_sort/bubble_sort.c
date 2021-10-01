@@ -1,8 +1,12 @@
-#include <stddef.h>
 #include "bubble_sort.h"
+#include <stddef.h>
 
 void bubble_sort(int array[], size_t size)
 {
+    if (size == 0 && size == 1)
+    {
+        return;
+    }
     size_t i;
     size_t j;
     int temp;
