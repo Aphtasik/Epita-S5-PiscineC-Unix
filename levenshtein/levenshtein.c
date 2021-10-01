@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <stddef.h>
 #define MIN(A, B) ((A) < (B) ? (A) : (B))
 
@@ -14,21 +15,49 @@ size_t len(const char *s)
 
 size_t levenshtein(const char *s1, const char *s2)
 {
-    if (len(s1) == 0)
+    size_t len_s1 = len(s1);
+    size_t len_s2 = len(s2);
+    size_t i = 0;
+    size_t j = 0;
+    size_t sub_cost = 0;
+
+    size_t **distance = malloc(sizeof(size_t) * len_s1);
+    for (i = 0; i < len_s1; i++)
     {
-        return len(s2);
+        size_t *cols = calloc(len_s2, sizeof(size_t));
+        distance[i] = cols;
     }
-    else if (len(s2) == 0)
+
+    for (i = 1; i < len_s1; i++)
     {
-        return len(s1);
+        distance[i][0] = i;
     }
-    else if (s1[0] == s2[0])
+
+    for (i = 1; i < len_s2; i++)
     {
-        return levenshtein(s1 + 1, s2 + 1);
+        distance[0][j] = j;
     }
-    else
+
+    for (j = 1; j < len_s2; j++)
     {
-        size_t mini_btw_two = MIN(levenshtein(s1 + 1, s2), levenshtein(s1, s2 + 1));
-        return 1 + MIN(mini_btw_two, levenshtein(s1 + 1, s2 + 1));
+        for (i = 1; i < len_s1; i++)
+        {
+            if (s1[i] == s2[j])
+            {
+                sub_cost = 0;
+            }
+            else
+            {
+                sub_cost = 1;
+            }
+            size_t min =MIN(distance[i - 1][j] + 1, distance[i][j - 1] + 1);
+            distance[i][j] =MIN(min, distance[i - 1][j - 1] + sub_cost);
+        }
     }
+    return distance[len_s1][len_s2];
+}
+
+int main()
+{
+    printf("%ld\n", levenshtein("doom", "tools"));
 }
