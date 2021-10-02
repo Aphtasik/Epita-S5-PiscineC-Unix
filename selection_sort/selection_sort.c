@@ -20,12 +20,15 @@ unsigned array_min(const int arr[], unsigned start, unsigned size)
 
 void selection_sort(int arr[], unsigned size)
 {
-    unsigned i;
-    unsigned min;
-
-    for(i = 0; i < size - 1; i++)
+    if (size > 1)
     {
-        min = array_min(arr, i, size);
-        swap(&arr[i], &arr[min]);
+        unsigned i;
+        unsigned min;
+
+        for (i = 0; i < size - 1; i++)
+        {
+            min = array_min(arr, i, size);
+            swap(&arr[i], &arr[min]);
+        }
     }
 }
