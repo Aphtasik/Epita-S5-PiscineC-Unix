@@ -14,7 +14,7 @@ int compareString(const char *haystack, const char *needle)
 
 int my_strstr(const char *haystack, const char *needle)
 {
-    if (needle == NULL || *needle == '\0')
+    if (*needle == '\0')
     {
         return 0;
     }
@@ -23,11 +23,11 @@ int my_strstr(const char *haystack, const char *needle)
 
     while (*haystack != '\0')
     {
-        if (*haystack == *needle) 
+        if (*haystack == *needle)
         {
             if (compareString(haystack, needle))
             {
-                return i; 
+                return i;
             }
         }
         haystack++;
