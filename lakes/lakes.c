@@ -25,5 +25,5 @@ int lakes(char **map, int width, int height)
             }
         }
     }
-    return nb_lakes; 
+    return nb_lakes;
 }
