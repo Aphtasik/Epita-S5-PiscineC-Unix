@@ -10,7 +10,7 @@ int my_pow(int a, int b)
     }
     else if (b % 2 == 0)
     {
-        return my_pow (a, b / 2) * my_pow(a, b / 2);
+        return my_pow(a, b / 2) * my_pow(a, b / 2);
     }
     else
     {
