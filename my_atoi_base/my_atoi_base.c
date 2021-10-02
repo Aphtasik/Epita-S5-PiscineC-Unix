@@ -73,7 +73,7 @@ int my_atoi_base(const char *str, const char *base)
     if (neg != 0)
     {
         str++;
-        str_len-= 1;
+        str_len -= 1;
     }
 
     int res = 0;
@@ -90,4 +90,3 @@ int my_atoi_base(const char *str, const char *base)
 
     return (neg == 1) ? -res : res;
 }
-
