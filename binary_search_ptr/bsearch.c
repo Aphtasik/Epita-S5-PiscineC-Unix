@@ -1,9 +1,11 @@
 #include "bsearch.h"
 
+#include <stddef.h>
+
 int *binary_search(int *begin, int *end, int elt)
 {
-    int *mid = NULL; 
-    while(begin <= end)
+    int *mid = NULL;
+    while (begin <= end)
     {
         mid = begin + (end - begin) / 2;
 
