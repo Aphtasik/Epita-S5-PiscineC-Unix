@@ -10,7 +10,7 @@ int partition(int *tab, int left, int right)
     int i = left - 1;
     int pivot = tab[right];
 
-    for(int j = left; j < right; j++)
+    for (int j = left; j < right; j++)
     {
         if (tab[j] < pivot)
         {
@@ -35,7 +35,7 @@ void quicksortBorned(int *tab, int left, int right)
 
 void quicksort(int *tab, int len)
 {
-    if (len != 1 && len != 0)
+    if (len > 1 && tab)
     {
         int left = 0;
         int right = len - 1;
