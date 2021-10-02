@@ -23,7 +23,6 @@ char convertUpperPositive(char a, char b, int cypher)
 {
     int upper_a = (a >= 'a' && a <= 'z') ? ((int)a - 32) : (int)a;
     int upper_b = (b >= 'a' && b <= 'z') ? ((int)b - 32) : (int)b;
-    
     if (cypher == 1)
     {
         return (char)((upper_a + upper_b) % 26 + 65);
@@ -81,5 +80,4 @@ void decipher(const char *key, const char *msg, char *res)
         msg_i++;
     }
     res[msg_i] = '\0';
-
 }
