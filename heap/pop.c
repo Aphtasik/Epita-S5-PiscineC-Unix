@@ -60,21 +60,21 @@ int pop(struct heap *heap)
     ResetEltInHeap(*heap, heap->size - 1);
     heap->size--;
 
-    int n = heap->size-1;
+    int n = heap->size - 1;
     int ok = 0;
     int i = 1;
     int j = 0;
-    while((i <= n/2) && ok == 0)
+    while ((i <= n / 2) && ok == 0)
     {
-        j = 2*i;
-        if((j+1 <= n) && (MovePointerInHeap(*heap, j+1) < MovePointerInHeap(*heap, j)))
+        j = 2 * i;
+        if ((j + 1 <= n) && (MovePointerInHeap(*heap, j + 1) < MovePointerInHeap(*heap, j)))
         {
             j++;
         }
-        if(MovePointerInHeap(*heap, i) > MovePointerInHeap(*heap, j))
+        if (MovePointerInHeap(*heap, i) > MovePointerInHeap(*heap, j))
         {
             SwapPairs(*heap, i, j);
-            i=j;
+            i = j;
         }
         else
         {

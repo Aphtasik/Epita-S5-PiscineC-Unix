@@ -1,12 +1,13 @@
-CC = gcc
+CC= gcc
 CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic
 
 OBJS = create.o add.o pop.o del.o print.o
-BIN = create add pop del print
 
-all: $(BIN)
+all: $(OBJS) 
+	$(CC) -o heap $^
 
-$(BIN): $(OBJS)
+library: $(OBJS)
+	ar csr libheap.a $^
 
 clean:
-	$(RM) $(BIN) $(OBJS)
+	$(RM) heap *.o *.a
