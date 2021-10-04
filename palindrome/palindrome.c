@@ -14,11 +14,21 @@ int palindrome(const char *s)
     int left = 0;
     int right = len - 1;
 
-    while (s[left] < 48 || (s[left] > 57 && s[left] < 65) || (s[left] > 90 && s[left] < 97) || s[left] > 122)
+    while (s[left] < 48 || (s[left] > 57 && s[left] < 65))
     {
         left++;
     }
-    while (s[right] < 48 || (s[right] > 57 && s[right] < 65) || (s[right] > 90 && s[right] < 97) || s[right] > 122)
+
+    while ((s[left] > 90 && s[left] < 97) || s[left] > 122)
+    {
+        left++;
+    }
+    while (s[right] < 48 || (s[right] > 57 && s[right] < 65))
+    {
+        right--;
+    }
+
+    while ((s[right] > 90 && s[right] < 97) || s[right] > 122)
     {
         right--;
     }
@@ -27,11 +37,19 @@ int palindrome(const char *s)
     {
         left++;
         right--;
-        while (s[left] < 48 || (s[left] > 57 && s[left] < 65) || (s[left] > 90 && s[left] < 97) || s[left] > 122)
+        while (s[left] < 48 || (s[left] > 57 && s[left] < 65))
         {
             left++;
         }
-        while (s[right] < 48 || (s[right] > 57 && s[right] < 65) || (s[right] > 90 && s[right] < 97) || s[right] > 122)
+        while ((s[left] > 90 && s[left] < 97) || s[left] > 122)
+        {
+            left++;
+        }
+        while (s[right] < 48 || (s[right] > 57 && s[right] < 65))
+        {
+            right--;
+        }
+        while ((s[right] > 90 && s[right] < 97) || s[right] > 122)
         {
             right--;
         }
