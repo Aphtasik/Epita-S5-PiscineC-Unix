@@ -1,9 +1,10 @@
 #include "bubble_sort.h"
+
 #include <stddef.h>
 
 void bubble_sort(int array[], size_t size)
 {
-    if (size == 0 && size == 1)
+    if (size < 2 || !array)
     {
         return;
     }
