@@ -1,4 +1,5 @@
 #include "int_vector_max.h"
+
 #include <stddef.h>
 
 int int_vector_max(const struct int_vector vec)
