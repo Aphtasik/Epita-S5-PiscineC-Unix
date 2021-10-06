@@ -8,7 +8,7 @@ void swap(int *a, int *b)
 int partition(int *tab, int left, int right)
 {
     int i = left - 1;
-    int pivot = tab[right];
+    int pivot = tab[left];
 
     for (int j = left; j < right; j++)
     {
