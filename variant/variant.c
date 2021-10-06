@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void variant_display(const struct variant *e)
 {
@@ -23,7 +24,7 @@ void variant_display(const struct variant *e)
 }
 
 bool variant_equal(const struct variant *left, const struct variant *right)
-{ 
+{
     enum type lt = left->type;
     enum type rt = right->type;
 
@@ -31,14 +32,14 @@ bool variant_equal(const struct variant *left, const struct variant *right)
     {
         switch (lt)
         {
-            case TYPE_INT:
-                return left->value.int_v == right->value.int_v;
-            case TYPE_FLOAT:
-                return left->value.float_v == right->value.float_v;
-            case TYPE_CHAR:
-                return left->value.char_v == right->value.char_v;
-            default:
-                return left->value.str_v == right->value.str_v;
+        case TYPE_INT:
+            return left->value.int_v == right->value.int_v;
+        case TYPE_FLOAT:
+            return left->value.float_v == right->value.float_v;
+        case TYPE_CHAR:
+            return left->value.char_v == right->value.char_v;
+        default:
+            return strcmp(left->value.str_v == right->value.str_v) == 0;
         }
         return true;
     }
@@ -75,7 +76,7 @@ int variant_find(const struct variant *array, size_t len, enum type type,
                     }
                     break;
                 default:
-                    if (array[i].value.str_v == value.str_v)
+                    if (!strcmp(array[i].value.str_v == value.str_v))
                     {
                         return i;
                     }
@@ -90,7 +91,7 @@ float variant_sum(const struct variant *array, size_t len)
 {
     float sum = 0;
 
-    if (array)
+    if (array && len > 0)
     {
         for (size_t i = 0; i < len; i++)
         {
@@ -105,5 +106,4 @@ float variant_sum(const struct variant *array, size_t len)
         }
     }
     return sum;
-    
 }
