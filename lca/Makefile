@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS= -Werror -Wextra -Wall -std=99 -pedantic
+CFLAGS= -Werror -Wextra -Wall -std=c99 -pedantic -g
 LDFLAGS= -lcriterion
 
 all: main.o lca.o

@@ -25,25 +25,15 @@ static void build_list(int *values, int *arr,  int x_index)
         if (x_index % 2 == 0)
         {
             arr[arr_i] = values[x_index / 2 - 1];
-            x_index++:
+            x_index = x_index / 2 - 1;
         }
         else
         {
             arr[arr_i] = values[x_index / 2];
-            x_index++:
+            x_index = x_index / 2;
         }
+        arr_i++;
     }
-}
-
-static int *create_list(int *values, int length, int x)
-{
-    int *plist = malloc(sizeof(int) * length);
-    int *qlist = malloc(sizeof(int) * length);
-
-    int pindex = find_elt(values, length, x);
-    int qindex = find_elt(values, length, x);
-
-    build_list(values, x)
 }
 
 int lca(int *values, int length, int p, int q)
