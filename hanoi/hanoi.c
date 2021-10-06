@@ -16,5 +16,5 @@ void hanoi_print(unsigned n, char d, char a, char i)
 
 void hanoi(unsigned n)
 {
-   hanoi_print(n, '1', '3', '2');
+    hanoi_print(n, '1', '3', '2');
 }
