@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stddef.h>
+
 #define MIN(A, B) ((A) < (B) ? (A) : (B))
 
 size_t len(const char *s)
@@ -23,7 +24,11 @@ size_t levenshtein(const char *s1, const char *s2)
     size_t i = 0;
     size_t j = 0;
 
-    size_t *distance = calloc(len_s1 + 1, sizeof(size_t));
+    size_t *distance = malloc((len_s1 + 1) * sizeof(size_t));
+    for (i = 0; i < len_s1 + 1; i++)
+    {
+        distance[i] = 0;
+    }
 
     for (i = 1; i <= len_s1; i++)
     {
@@ -39,7 +44,7 @@ size_t levenshtein(const char *s1, const char *s2)
             od = distance[i];
             size_t temp = MIN(distance[i] + 1, distance[i - 1] + 1);
             size_t is_eq = (s1[i - 1] == s2[j - 1]) ? 0 : 1;
-            distance[i] = MIN(temp, ld + is_eq); 
+            distance[i] = MIN(temp, ld + is_eq);
             ld = od;
         }
     }
