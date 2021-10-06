@@ -1,3 +1,4 @@
 alltags.sh
 gccexo.sh
 commitnameversion.sh
+.clang-format

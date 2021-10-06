@@ -1,9 +1,9 @@
 CC= gcc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic
+CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -g
 
 OBJS = create.o add.o pop.o del.o print.o
 
-all: $(OBJS) 
+all: $(OBJS)
 	$(CC) -o heap $^
 
 library: $(OBJS)
