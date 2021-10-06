@@ -1,19 +1,32 @@
 #include "stack.h"
 
+#include <stdlib.h>
+
 struct stack *stack_push(struct stack *s, int e)
 {
     struct stack *new = malloc(sizeof(struct stack));
+    if (!new)
+    {
+        return s;
+    }
     new->data = e;
-    new->next = NULL;
+    new->next = s;
 
-    if (s == NULL)
-    {
-        return new;
-    }
+    return new;
+}
 
-    while (s->next != NULL)
+struct stack *stack_pop(struct stack *s)
+{
+    if (!s)
     {
-        s = s->next;
+        return NULL;
     }
-    s->next = new;
+    struct stack *next = s->next;
+    free(s);
+    return next;
+}
+
+int stack_peek(struct stack *s)
+{
+    return s->data;
 }
