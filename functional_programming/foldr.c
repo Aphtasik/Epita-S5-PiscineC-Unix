@@ -6,5 +6,5 @@ int foldr(int *array, size_t len ,int (*funct)(int,  int))
     {
         return 0;
     }
-    return fn(*array, len, foldr(array + 1, len - 1));
+    return foldr(*array, len, funct(array + 1, len - 1));
 }
