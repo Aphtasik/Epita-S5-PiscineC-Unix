@@ -3,16 +3,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
-static void list_print_rec(struct list *l)
-{
-    if (!l)
-    {
-        return;
-    }
-    list_print(l);
-}
-
-void list_print(struct list *l)
+void list_print_rec(struct list *l)
 {
     if (!l->next)
     {
@@ -20,5 +11,15 @@ void list_print(struct list *l)
        return;
     }
     printf("%d ", l->data);
-    list_print(l->next);
+    list_print_rec(l->next);
 }
+
+void list_print(struct list *l)
+{
+    if (!l)
+    {
+        return;
+    }
+    list_print_rec(l);
+}
+
