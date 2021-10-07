@@ -3,7 +3,7 @@ CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -g
 
 OBJS = create.o add.o pop.o del.o print.o
 
-all: $(OBJS)
+juicy: $(OBJS) main.o
 	$(CC) -o heap $^
 
 library: $(OBJS)
