@@ -39,7 +39,7 @@ bool variant_equal(const struct variant *left, const struct variant *right)
         case TYPE_CHAR:
             return left->value.char_v == right->value.char_v;
         default:
-            return strcmp(left->value.str_v == right->value.str_v) == 0;
+            return strcmp(left->value.str_v, right->value.str_v) == 0;
         }
         return true;
     }
@@ -76,7 +76,7 @@ int variant_find(const struct variant *array, size_t len, enum type type,
                     }
                     break;
                 default:
-                    if (!strcmp(array[i].value.str_v == value.str_v))
+                    if (!strcmp(array[i].value.str_v, value.str_v))
                     {
                         return i;
                     }
