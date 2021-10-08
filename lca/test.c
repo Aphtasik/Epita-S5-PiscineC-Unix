@@ -1,6 +1,6 @@
-#include "lca.h"
-
 #include <criterion/criterion.h>
+
+#include "lca.h"
 
 Test(list, short_tree)
 {

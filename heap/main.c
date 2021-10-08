@@ -1,9 +1,9 @@
-#include "heap.h"
-
+#include <assert.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
-#include <assert.h>
+
+#include "heap.h"
 
 int main(void)
 {
@@ -23,5 +23,4 @@ int main(void)
     print_heap(h);
     delete_heap(h);
     return 0;
-
 }

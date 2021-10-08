@@ -1,7 +1,7 @@
-#include "heap.h"
-
-#include <stdlib.h>
 #include <stddef.h>
+#include <stdlib.h>
+
+#include "heap.h"
 
 struct heap *create_heap(void)
 {

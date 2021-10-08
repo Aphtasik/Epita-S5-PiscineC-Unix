@@ -1,7 +1,7 @@
-#include "hash_map.h"
-
-#include <stdio.h>
 #include <stddef.h>
+#include <stdio.h>
+
+#include "hash_map.h"
 
 void hash_map_dump(struct hash_map *hash_map)
 {
@@ -17,7 +17,7 @@ void hash_map_dump(struct hash_map *hash_map)
             printf("%s: %s", pair->key, pair->value);
             while (pair->next)
             {
-                pair = pair -> next;
+                pair = pair->next;
                 printf("%s: %s", pair->key, pair->value);
             }
             printf("\n");

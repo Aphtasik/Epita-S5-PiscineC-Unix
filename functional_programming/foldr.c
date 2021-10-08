@@ -1,6 +1,6 @@
 #include "functional_programming.h"
 
-int foldr(int *array, size_t len ,int (*funct)(int,  int))
+int foldr(int *array, size_t len, int (*funct)(int, int))
 {
     if (!len)
     {

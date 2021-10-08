@@ -1,4 +1,5 @@
 #include "int_vector_bubble_sort.h"
+
 #include <stddef.h>
 
 static struct int_vector swap(struct int_vector vec, size_t i, size_t j)

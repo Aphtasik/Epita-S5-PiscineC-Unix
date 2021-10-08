@@ -1,4 +1,5 @@
 #include "int_vector_hill.h"
+
 #include <stddef.h>
 
 int int_vector_hill(struct int_vector vec)

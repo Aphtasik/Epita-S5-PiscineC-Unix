@@ -15,7 +15,7 @@ static int find_elt(int *values, int length, int x)
     return -1;
 }
 
-static void build_list(int *values, int *arr,  int x_index)
+static void build_list(int *values, int *arr, int x_index)
 {
     int arr_i = 1;
     arr[0] = values[x_index];
@@ -51,7 +51,7 @@ int lca(int *values, int length, int p, int q)
 
     build_list(values, plist, pindex);
     build_list(values, qlist, qindex);
-    
+
     int i = 0;
     while (plist[i] != qlist[i])
     {
@@ -59,4 +59,3 @@ int lca(int *values, int length, int p, int q)
     }
     return plist[i];
 }
-

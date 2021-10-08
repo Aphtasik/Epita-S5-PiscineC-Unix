@@ -5,10 +5,9 @@ char *my_itoa(int value, char *s)
     int reversedInt = 0;
     int remainder;
 
-
     if (value < 0)
     {
-        value = - value;
+        value = -value;
         s[s_i] = '-';
         s_i++;
     }
@@ -20,7 +19,7 @@ char *my_itoa(int value, char *s)
         value = value / 10;
     }
 
-    while(reversedInt != 0)
+    while (reversedInt != 0)
     {
         remainder = reversedInt % 10;
         s[s_i] = remainder + '0';

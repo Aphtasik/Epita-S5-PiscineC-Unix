@@ -11,7 +11,7 @@ struct list *list_add(struct list *l, int e)
     }
     new->data = e;
 
-    if (!l) 
+    if (!l)
     {
         new->next = NULL;
         return new;
@@ -59,7 +59,8 @@ struct list *list_remove(struct list *l, int e)
             }
             if (!l)
             {
-                return head;;
+                return head;
+                ;
             }
             prev->next = l->next;
             free(l);

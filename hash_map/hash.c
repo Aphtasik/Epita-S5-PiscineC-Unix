@@ -1,7 +1,7 @@
-#include "hash_map.h"
-
 #include <stddef.h>
 #include <stdlib.h>
+
+#include "hash_map.h"
 
 size_t hash(const char *key)
 {
@@ -14,4 +14,3 @@ size_t hash(const char *key)
 
     return hash;
 }
-

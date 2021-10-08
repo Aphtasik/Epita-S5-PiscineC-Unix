@@ -1,8 +1,9 @@
 #include "complex_print.h"
-#include "complex.h"
-#include "complex_operations.h"
 
 #include <stdio.h>
+
+#include "complex.h"
+#include "complex_operations.h"
 
 void print_complex(struct complex a)
 {

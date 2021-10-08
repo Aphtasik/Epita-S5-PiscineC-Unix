@@ -17,12 +17,12 @@ struct hash_map *hash_map_init(size_t size)
     }
     new->size = size;
 
-    new->data = malloc(sizeof(struct pair_list*) * size);
+    new->data = malloc(sizeof(struct pair_list *) * size);
     if (!new->data)
     {
         return NULL;
     }
-    
+
     for (size_t i = 0; i < size; i++)
     {
         new->data[i] = NULL;
@@ -80,7 +80,7 @@ bool hash_map_insert(struct hash_map *hash_map, const char *key, char *value,
     else
     {
         struct pair_list *p_list = hash_map->data[hashed];
-        for (;p_list->next && !(*updated); p_list = p_list->next)
+        for (; p_list->next && !(*updated); p_list = p_list->next)
         {
             if (p_list->key == key)
             {
@@ -88,7 +88,7 @@ bool hash_map_insert(struct hash_map *hash_map, const char *key, char *value,
                 *updated = true;
             }
         }
-        
+
         if (!updated)
         {
             p_new->next = hash_map->data[hashed]->next;
@@ -151,4 +151,3 @@ bool hash_map_remove(struct hash_map *hash_map, const char *key)
     }
     return false;
 }
-

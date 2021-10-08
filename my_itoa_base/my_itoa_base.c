@@ -37,7 +37,7 @@ char *my_itoa_base(int n, char *s, const char *base)
     while (n > 0)
     {
         s[i++] = convertToDec(n % baseNb);
-        n/= baseNb;
+        n /= baseNb;
     }
     s[i] = '\0';
 

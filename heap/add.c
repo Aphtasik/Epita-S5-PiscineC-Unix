@@ -1,8 +1,8 @@
-#include "heap.h"
-
-#include <stdlib.h>
-#include <stddef.h>
 #include <err.h>
+#include <stddef.h>
+#include <stdlib.h>
+
+#include "heap.h"
 
 static void swap_pairs(struct heap *heap, size_t x1, size_t x2)
 {
@@ -16,7 +16,7 @@ void add(struct heap *heap, int value)
     heap->size += 1;
     if (heap->size >= heap->capacity)
     {
-        heap->array = realloc(heap->array, sizeof(int) *  heap->capacity * 2);
+        heap->array = realloc(heap->array, sizeof(int) * heap->capacity * 2);
         heap->capacity = heap->capacity * 2;
     }
     heap->array[heap->size - 1] = value;

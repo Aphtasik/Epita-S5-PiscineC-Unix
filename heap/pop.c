@@ -1,8 +1,8 @@
-#include "heap.h"
-
-#include <stdlib.h>
-#include <stddef.h>
 #include <assert.h>
+#include <stddef.h>
+#include <stdlib.h>
+
+#include "heap.h"
 
 static void swap_pairs(struct heap *heap, size_t x1, size_t x2)
 {

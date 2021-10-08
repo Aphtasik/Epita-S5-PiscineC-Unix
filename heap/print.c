@@ -1,8 +1,8 @@
-#include "heap.h"
-
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
+
+#include "heap.h"
 
 static char *my_itoa(int value, char *s)
 {
@@ -10,10 +10,9 @@ static char *my_itoa(int value, char *s)
     int reversedInt = 0;
     int remainder;
 
-
     if (value < 0)
     {
-        value = - value;
+        value = -value;
         s[s_i] = '-';
         s_i++;
     }
@@ -25,7 +24,7 @@ static char *my_itoa(int value, char *s)
         value = value / 10;
     }
 
-    while(reversedInt != 0)
+    while (reversedInt != 0)
     {
         remainder = reversedInt % 10;
         s[s_i] = remainder + '0';
@@ -77,7 +76,7 @@ static void print_heap_rec(const struct heap *heap, size_t i)
     }
     else
     {
-        print_int(heap, i, 1); 
+        print_int(heap, i, 1);
         print_heap_rec(heap, 2 * i + 1);
         print_heap_rec(heap, 2 * i + 2);
     }

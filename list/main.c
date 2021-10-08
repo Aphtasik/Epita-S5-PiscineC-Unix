@@ -1,7 +1,7 @@
-#include "list.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "list.h"
 
 int predicate(int e)
 {
@@ -15,7 +15,6 @@ int main()
     test = list_add(test, 5);
     test = list_add(test, 4);
     test = list_add(test, 2);
-
 
     test = list_remove_if(test, predicate);
     list_print(test);
