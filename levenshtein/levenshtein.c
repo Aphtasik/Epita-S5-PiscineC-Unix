@@ -1,7 +1,7 @@
 #include "levenshtein.h"
 
-#include <stdlib.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 #define MIN(A, B) ((A) < (B) ? (A) : (B))
 
@@ -48,5 +48,7 @@ size_t levenshtein(const char *s1, const char *s2)
             ld = od;
         }
     }
+    size_t res = distance[len_s1];
+    free(distance);
     return distance[len_s1];
 }
