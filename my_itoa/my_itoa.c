@@ -1,4 +1,3 @@
-#include "lookup_table.h"
 char *my_itoa(int value, char *s)
 {
     int s_i = 0;
