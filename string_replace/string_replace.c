@@ -56,5 +56,7 @@ char *string_replace(char c, const char *str, const char *pattern)
             new_i++;
         }
     }
+
+    new[new_i] = '\0';
     return new;
 }

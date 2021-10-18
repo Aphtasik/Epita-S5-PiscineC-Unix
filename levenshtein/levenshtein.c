@@ -50,5 +50,5 @@ size_t levenshtein(const char *s1, const char *s2)
     }
     size_t res = distance[len_s1];
     free(distance);
-    return distance[len_s1];
+    return res; 
 }

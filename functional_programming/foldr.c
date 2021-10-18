@@ -1,10 +1,11 @@
 #include "functional_programming.h"
 
-int foldr(int *array, size_t len, int (*funct)(int, int))
+int foldr(int *array, size_t len, int (*func)(int, int))
 {
-    if (!len)
+    int acc = 0;
+    for (size_t i = 0; i < len; i++)
     {
-        return 0;
+        acc = func(array[i], acc);
     }
-    return foldr(*array, len, funct(array + 1, len - 1));
+    return acc;
 }
