@@ -11,7 +11,7 @@ int sort(int *tab, int left, int right)
     int j;
     int pivot;
 
-    if (left<right)
+    if (left < right)
     {
         pivot = left;
         i = left;

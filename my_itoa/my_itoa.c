@@ -1,13 +1,13 @@
 void reverse_string(char s[], int len)
 {
     int start = 0;
-    int end = len -1;
+    int end = len - 1;
     char tmp;
     while (start < end)
     {
-        tmp = *(s+start);
-        *(s+start) = *(s+end);
-        *(s+end) = tmp;
+        tmp = *(s + start);
+        *(s + start) = *(s + end);
+        *(s + end) = tmp;
         start++;
         end--;
     }
