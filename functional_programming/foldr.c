@@ -3,7 +3,7 @@
 int foldr(int *array, size_t len, int (*func)(int, int))
 {
     int acc = 0;
-    for (size_t i = 0; i < len; i++)
+    for (size_t i = len; i > 0; i--)
     {
         acc = func(array[i], acc);
     }
