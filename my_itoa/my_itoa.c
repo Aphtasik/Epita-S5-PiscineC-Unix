@@ -28,6 +28,7 @@ char *my_itoa(int value, char *s)
     if (value == 0)
     {
         s[s_i++] = '0';
+        s[s_i] = '\0';
         return s;
     }
 
