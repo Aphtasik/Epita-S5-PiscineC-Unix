@@ -17,8 +17,8 @@ static int find_elt(int *values, int length, int x)
 
 static void build_list(int *values, int *arr, int x_index)
 {
-    int arr_i = 1;
-    arr[0] = values[x_index];
+    int arr_i = 0;
+    arr[arr_i++] = values[x_index];
 
     while (x_index != 0)
     {
