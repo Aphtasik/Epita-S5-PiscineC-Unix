@@ -5,7 +5,7 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
-int sort(int *tab, int left, int right)
+void sort(int *tab, int left, int right)
 {
     int i;
     int j;
