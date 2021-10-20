@@ -26,7 +26,7 @@ static void heapify_rec(int *array, size_t size, size_t i)
     if (max != i)
     {
         swap(array, max, i);
-        heapify_rec(arr, size, max);
+        heapify_rec(array, size, max);
     }
 }
 
@@ -34,14 +34,20 @@ void heapify(int *array, size_t size)
 {
     if (array)
     {
-        heapify_rec(arr, size, i);
+        heapify_rec(array, size, 0);
     }
 }
 
 void heap_sort(int *array, size_t size)
 {
-    for (int i = n / 2 - 1; i >= 0; i--)
+    for (int i = size / 2 - 1; i >= 0; i--)
     {
-        heapify(arr,
+        heapify_rec(array, size, i);
+    }
+
+    for (int i = size - 1; i > 0; i--)
+    {
+        swap(array, i, 0);
+        heapify_rec(array, i, 0);
     }
 }

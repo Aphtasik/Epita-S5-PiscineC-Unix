@@ -16,6 +16,12 @@ static char *my_itoa(int value, char *s)
         s[s_i] = '-';
         s_i++;
     }
+    if (value == 0)
+    {
+        s[s_i++] = '0';
+        s[s_i] = '\0';
+        return s;
+    }
 
     while (value != 0)
     {
@@ -47,38 +53,69 @@ static int get_nb_char(int nb)
     return tt;
 }
 
-static void print_int(const struct heap *heap, size_t i, int is_space)
+struct queue
 {
-    int nb_char = get_nb_char(heap->array[i]);
-    char *s = malloc(sizeof(char) * nb_char);
-    s = my_itoa(heap->array[i], s);
+    int data;
+    struct queue *next;
+};
 
-    for (int j = 0; j < nb_char; j++)
+struct queue *queue_push(struct queue *l, int elt)
+{
+    struct queue *new = malloc(sizeof(struct queue));
+    if (!new)
     {
-        putchar(s[j]);
+        return NULL;
     }
-    if (is_space == 1)
+    new->data = elt;
+
+    if (!l)
     {
-        putchar(' ');
+        new->next = NULL;
+        return new;
     }
-    free(s);
+    else
+    {
+        new->next = l;
+        return new;
+    }
 }
 
-static void print_heap_rec(const struct heap *heap, size_t i)
+struct queue *queue_pop(struct queue *l, int *elt)
+{
+    if (l)
+    {
+        struct queue *head = l;
+        struct queue *prev = l;
+        if (!l->next)
+        {
+            *elt = l->data;
+            free(l);
+            return NULL;
+        }
+        while (l->next)
+        {
+            prev = l;
+            l = l->next;
+        }
+        prev->next = NULL;
+        *elt = l->data;
+        free(l);
+        return head;
+    }
+    return NULL;
+}
+
+static void print_heap_rec(const struct heap *heap, size_t i, struct queue *q)
 {
     if (i >= heap->size)
     {
         return;
     }
-    else if (i == heap->size - 1)
-    {
-        print_int(heap, i, 0);
-    }
     else
     {
-        print_int(heap, i, 1);
-        print_heap_rec(heap, 2 * i + 1);
-        print_heap_rec(heap, 2 * i + 2);
+        q = queue_push(q, heap->array[i]);
+        print_heap_rec(heap, 2 * i + 1, q);
+        print_heap_rec(heap, 2 * i + 2, q);
     }
 }
 
@@ -86,7 +123,25 @@ void print_heap(const struct heap *heap)
 {
     if (heap && heap->array[0])
     {
-        print_heap_rec(heap, 0);
+        struct queue *q = NULL;
+        int *elt = NULL;
+        print_heap_rec(heap, 0, q);
+
+        for (int i = 0; i < heap->size; i++)
+        {
+            q = queue_pop(q, elt);
+            int nb_char = get_nb_char(*elt);
+            char *s = malloc(sizeof(char) * nb_char);
+            s = my_itoa(*elt, s);
+
+            for (int j = 0; j < nb_char; j++)
+            {
+                putchar(s[j]);
+                putchar(' ');
+            }
+            free(s);
+        }
+        free(q);
         putchar('\n');
     }
 }

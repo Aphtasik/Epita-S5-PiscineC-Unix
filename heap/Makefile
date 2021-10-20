@@ -1,5 +1,5 @@
 CC= gcc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -g
+CFLAGS = -std=c99 -Wall -Wextra -pedantic -g
 
 OBJS = create.o add.o pop.o del.o print.o
 
@@ -10,4 +10,4 @@ library: $(OBJS)
 	ar csr libheap.a $^
 
 clean:
-	$(RM) heap *.o *.a
+	$(RM) heap *.o *.a *vgcore*
