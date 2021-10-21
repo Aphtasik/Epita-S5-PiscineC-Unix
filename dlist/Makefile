@@ -8,4 +8,4 @@ library: dlist.o
 	ar rcs libdlist.a $^
 
 clean:
-	$(RM) *.o a.out
+	$(RM) *.o a.out v*core*
