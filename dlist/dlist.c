@@ -10,7 +10,7 @@ struct dlist *dlist_init(void)
     if (!dl)
         return NULL;
 
-    dl->size = 1;
+    dl->size = 0;
     dl->tail = NULL;
     dl->head = NULL;
 
@@ -23,6 +23,7 @@ int dlist_push_front(struct dlist *list, int element)
     if (!new)
         return 0;
 
+    list->size += 1;
     new->data = element;
     new->prev = NULL;
     new->next = list->head;
@@ -54,6 +55,7 @@ int dlist_push_back(struct dlist *list, int element)
     if (!new)
         return 0;
 
+    list->size += 1;
     new->data = element;
     new->next = NULL;
 
@@ -105,6 +107,7 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
     size_t i = 0;
     if (list->head)
     {
+        list->size += 1;
         struct dlist_item *new = malloc(sizeof(struct dlist_item));
         new->data = element;
         new->next = NULL;
@@ -166,6 +169,7 @@ int dlist_remove_at(struct dlist *list, size_t index)
     size_t i = 0;
     if (list->head)
     {
+        list->size -= 1;
         int elt;
         struct dlist_item *item = list->head;
         for (; item && index != i; item = item->next)
@@ -257,6 +261,7 @@ struct dlist *dlist_split_at(struct dlist *list, size_t index)
                 {
                     return NULL;
                 }
+                dl_sec->size += 1;
 
                 if (item->next)
                 {
@@ -270,6 +275,7 @@ struct dlist *dlist_split_at(struct dlist *list, size_t index)
                 tmp = item;
                 item = item->next;
                 free(tmp);
+                list->size -= 1;
             }
             return dl_sec;
         }
@@ -285,9 +291,7 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
         while (1)
         {
             if (!dlist_push_back(list1, item->data))
-            {
                 err(1, "dlsit_concat: Failed Push back");
-            }
 
             if (item->next)
             {
@@ -301,51 +305,6 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
                 break;
             }
         }
+        list1->size = list1->size + list2->size;
     }
 }
-
-/**  */
-/** int main(void) */
-/** { */
-/**     int val; */
-/**  */
-/**     struct dlist *dl = dlist_init(); */
-/**     struct dlist *dl_sec; */
-/**  */
-/**     printf("SIZE: %ld\n", dlist_size(dl)); */
-/**  */
-/**     val = dlist_push_front(dl, 2); */
-/**     val = dlist_push_front(dl, 4); */
-/**     val = dlist_push_front(dl, 5); */
-/**  */
-/**     val = dlist_insert_at(dl, 3, 2); */
-/**  */
-/**     puts("PRINT:"); */
-/**     dlist_print(dl); */
-/**  */
-/**     printf("GET: %d\n", dlist_get(dl, 1)); */
-/**     printf("FIND: %d\n", dlist_get(dl, 3)); */
-/**     printf("SIZE: %ld\n", dlist_size(dl)); */
-/**  */
-/**     val = dlist_remove_at(dl, 2); */
-/**     puts("PRINT:"); */
-/**     dlist_print(dl); */
-/**  */
-/**     dlist_reverse(dl); */
-/**     dlist_reverse(dl); */
-/**     puts("PRINT:"); */
-/**     dlist_print(dl); */
-/**      */
-/**     dl_sec = dlist_split_at(dl, 2); */
-/**     puts("PRINT DL1:"); */
-/**     dlist_print(dl); */
-/**     puts("PRINT DL2:"); */
-/**     dlist_print(dl_sec); */
-/**  */
-/**     dlist_concat(dl, dl_sec); */
-/**     puts("PRINT:"); */
-/**     dlist_print(dl); */
-/**  */
-/**     val++; */
-/**     return 0; */
-/** } */
