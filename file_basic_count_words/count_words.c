@@ -13,6 +13,11 @@ int count_words(const char *file_in)
 {
     int count = 0;
     FILE *f = fopen(file_in, "r");
+    if (!f)
+    {
+        return -1;
+    }
+
     int c;
     int is_word = 0;
     while ((c = fgetc(f)) != EOF)
