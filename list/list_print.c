@@ -18,7 +18,7 @@ void list_print(struct list *l)
 {
     if (!l)
     {
-        return;
+        printf("\n");
     }
     list_print_rec(l);
 }

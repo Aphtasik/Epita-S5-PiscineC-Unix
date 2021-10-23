@@ -6,4 +6,4 @@ all: list.o list_print.o main.o
 	$(CC) $^
 
 clean:
-	$(RM) *.o a.out
+	$(RM) *.o a.out vgcore*

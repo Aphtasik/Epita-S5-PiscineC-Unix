@@ -7,20 +7,11 @@ struct list *list_add(struct list *l, int e)
     struct list *new = malloc(sizeof(struct list));
     if (!new)
     {
-        return NULL;
+        return l;
     }
     new->data = e;
-
-    if (!l)
-    {
-        new->next = NULL;
-        return new;
-    }
-    else
-    {
-        new->next = l;
-        return new;
-    }
+    new->next = l;
+    return new;
 }
 
 struct list *list_find(struct list *l, int e)
@@ -72,77 +63,62 @@ struct list *list_remove(struct list *l, int e)
 
 struct list *list_reverse_sorted_add(struct list *l, int e)
 {
+    struct list *head = l;
+    struct list *new = malloc(sizeof(struct list));
+    new->data = e;
+
     if (l)
     {
-        struct list *head = l;
-        struct list *new = malloc(sizeof(struct list));
-        if (!new)
+        struct list *prev = l;
+        if (e >= l->data)
         {
-            return NULL;
-        }
-        new->data = e;
-
-        if (e > l->data)
-        {
-            new->next = l;
+            new->next = l->next;
             return new;
         }
-        else
+        l = l->next;
+
+        while (l)
         {
-            while (l->next && e < l->next->data)
+            if (e >= l->data)
             {
-                l = l->next;
-            }
-            if (e >= l->next->data)
-            {
-                new->next = l->next->next;
-                l->next = new;
+                prev->next = new;
+                new->next = l;
                 return head;
             }
-            if (!l->next && e < l->data)
-            {
-                new->next = NULL;
-                l->next = new;
-                return head;
-            }
+            l = l->next;
         }
+        prev->next = new;
+        new->next = NULL;
+        return head;
     }
-    return NULL;
+    else
+    {
+        new->next = NULL;
+        return head;
+    }
 }
 
 struct list *list_remove_if(struct list *l, int (*predicate)(int))
 {
     if (l)
     {
-        struct list *head = l;
-        struct list *prev = l;
-        struct list *tmp;
-        while (predicate(head->data))
+        struct list *cpy = l;
+        while (cpy)
         {
-            head = list_remove(head, head->data);
-        }
-        if (!head)
-        {
-            return NULL;
-        }
-
-        l = head;
-        while (l)
-        {
-            if (predicate(l->data))
+            if (!cpy)
             {
-                tmp = l;
-                prev->next = l->next;
-                l = l->next;
-                free(tmp);
+                return NULL;
+            }
+            else if (predicate(cpy->data) == 1)
+            {
+                l = list_remove(l, cpy->data);
+                cpy = l;
             }
             else
             {
-                prev = l;
-                l = l->next;
+                cpy = cpy->next;
             }
         }
-        return head;
     }
-    return NULL;
+    return l;
 }
