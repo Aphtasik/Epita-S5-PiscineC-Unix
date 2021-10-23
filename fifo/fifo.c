@@ -20,6 +20,10 @@ struct fifo *fifo_init(void)
 
 size_t fifo_size(struct fifo *fifo)
 {
+    if (!fifo)
+    {
+        return 0;
+    }
     return fifo->size;
 }
 

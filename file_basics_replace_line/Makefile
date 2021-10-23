@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -pedantic -std=c99 -g
+CFLAGS=-Wall -Wextra -Werror -pedantic -std=c99 -g -fsanitize=address
 
-all: csv.o
+all: replace_line.o
 	$(CC) $^
 
 clean:
