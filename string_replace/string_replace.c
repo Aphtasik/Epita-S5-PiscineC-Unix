@@ -1,7 +1,6 @@
 #include "string_replace.h"
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int len(const char *str)
 {
@@ -60,26 +59,4 @@ char *string_replace(char c, const char *str, const char *pattern)
 
     new[new_i] = '\0';
     return new;
-}
-
-int main(void)
-{
-    char * res = string_replace('o', "bobo\n", "");
-    printf("%s", res);
-    free(res);
-    res = string_replace('o', "ooooooo\n", "i");
-    printf("%s", res);
-    free(res);
-    res = string_replace('i', "bobo\n", "oui");
-    printf("%s", res);
-    free(res);
-    res = string_replace('o', "ooooooo\n", "oio");
-    printf("%s", res);
-    free(res);
-    res = string_replace('i', "bibi\n", "oulou");
-    printf("%s", res);
-    free(res);
-    res = string_replace('\n', "\n", "coucou\n");
-    printf("%s", res);
-    free(res);
 }

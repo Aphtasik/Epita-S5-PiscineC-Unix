@@ -127,7 +127,7 @@ void print_heap(const struct heap *heap)
         int *elt = NULL;
         print_heap_rec(heap, 0, q);
 
-        for (int i = 0; i < heap->size; i++)
+        for (size_t i = 0; i < heap->size; i++)
         {
             q = queue_pop(q, elt);
             int nb_char = get_nb_char(*elt);

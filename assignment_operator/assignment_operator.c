@@ -25,7 +25,7 @@ void mult_equal(int *a, int *b)
 int div_equal(int *a, int *b)
 {
     int remainder = 0;
-    if (a && b && b != 0 && a != 0)
+    if (a && b && *b != 0 && *a != 0)
     {
         remainder = (*a) % (*b);
         *a = (*a) / (*b);
