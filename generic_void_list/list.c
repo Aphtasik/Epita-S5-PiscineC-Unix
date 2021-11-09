@@ -13,6 +13,11 @@ struct list *list_prepend(struct list *list, const void *value,
         return NULL;
     }
     new->data = malloc(data_size);
+    if (!new->data)
+    {
+        free(new);
+        return NULL;
+    }
     new->next = list;
     memcpy(new->data, value, data_size);
 
