@@ -8,4 +8,4 @@ test: vector.o
 	$(CC) $^
 
 clean:
-	$(RM) *o a.out
+	$(RM) *o a.out lib*

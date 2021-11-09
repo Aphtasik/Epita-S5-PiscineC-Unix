@@ -74,7 +74,7 @@ void vector_print(const struct vector *v)
         putchar('\n');
     else
     {
-        for (int i = 0; i < v->size - 1; i++)
+        for (size_t i = 0; i < v->size - 1; i++)
             printf("%d,", v->data[i]);
 
         printf("%d\n", v->data[v->size - 1]);
@@ -88,11 +88,11 @@ struct vector *vector_reset(struct vector *v, size_t n)
     return v;
 }
 
-static void insertion(int **data_original, int len, size_t i, int elt)
+static void insertion(int **data_original, size_t len, size_t i, int elt)
 {
     int *data = *data_original;
     int tmp = elt;
-    for (int i; i < len; i++)
+    for (; i < len; i++)
     {
         elt = tmp;
         tmp = data[i];
