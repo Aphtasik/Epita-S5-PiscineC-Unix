@@ -70,5 +70,7 @@ int lca(int *values, int length, int p, int q)
         }
         i++;
     }
+    free(plist);
+    free(qlist);
     return 0;
 }
