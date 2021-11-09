@@ -1,7 +1,6 @@
 #include "string_replace.h"
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int len(const char *str)
 {
@@ -39,7 +38,8 @@ char *string_replace(char c, const char *str, const char *pattern)
     int count = countc(str, len_str, c);
     int new_i = 0;
 
-    char *new = malloc(sizeof(char) * (len_str - count + (count * len_pattern + 1)));
+    char *new =
+        malloc(sizeof(char) * (len_str - count + (count * len_pattern + 1)));
 
     for (int i = 0; i < len_str; i++)
     {
