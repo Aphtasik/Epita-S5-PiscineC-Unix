@@ -107,8 +107,11 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
     size_t i = 0;
     if (list->head)
     {
-        list->size += 1;
         struct dlist_item *new = malloc(sizeof(struct dlist_item));
+        if (!new)
+        {
+            return -1;
+        }
         new->data = element;
         new->next = NULL;
         new->prev = NULL;
@@ -118,11 +121,12 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
         {
             i++;
         }
-        if (!item && i != index)
+        if (!item || i != index)
         {
             return -1;
         }
 
+        list->size += 1;
         if (item->prev)
         {
             new->prev = item->prev;
@@ -261,7 +265,6 @@ struct dlist *dlist_split_at(struct dlist *list, size_t index)
                 {
                     return NULL;
                 }
-                dl_sec->size += 1;
 
                 if (item->next)
                 {
@@ -291,7 +294,7 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
         while (1)
         {
             if (!dlist_push_back(list1, item->data))
-                err(1, "dlsit_concat: Failed Push back");
+                errx(1, "dlsit_concat: Failed Push back");
 
             if (item->next)
             {
@@ -301,7 +304,6 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
             else
             {
                 free(item);
-                free(list2);
                 break;
             }
         }
