@@ -2,7 +2,6 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 static int find_elt(int *values, int length, int x)
 {
@@ -71,14 +70,5 @@ int lca(int *values, int length, int p, int q)
         }
         i++;
     }
-    return 0;
-
-}
-
-int main(void)
-{
-    int tree[7] =  { 0, 1, 2, 3, 4, 5, 6 };
-    int res = lca(tree, 7, 1, 3);
-    printf("%d\n", res);
     return 0;
 }
