@@ -31,6 +31,8 @@ char *string_replace(char c, const char *str, const char *pattern)
 {
     if (!str)
         return NULL;
+    if (!pattern)
+        pattern = "";
 
     int len_str = len(str);
     int len_pattern = len(pattern);
