@@ -34,11 +34,12 @@ struct vector *vector_resize(struct vector *v, size_t n)
     {
         return v;
     }
-    else if (n < v->size) //TODO: faire un bail en plus
+    else if (n < v->size) // TODO: faire un bail en plus
     {
         v->data = realloc(v, sizeof(int) * n);
         if (!v->data)
             return NULL;
+        v->size = n;
     }
     else
     {
@@ -70,30 +71,62 @@ struct vector *vector_append(struct vector *v, int elt)
 void vector_print(const struct vector *v)
 {
     if (!v)
-    {
         putchar('\n');
-    }
     else
     {
         for (int i = 0; i < v->size - 1; i++)
-        {
             printf("%d,", v->data[i]);
-        }
+
         printf("%d\n", v->data[v->size - 1]);
     }
 }
 
 struct vector *vector_reset(struct vector *v, size_t n)
 {
-    assert(0 && "not implemented");
+    v->size = 0;
+    vector_resize(v, n);
+    return v;
+}
+
+static void insertion(int **data_original, int len, size_t i, int elt)
+{
+    int *data = *data_original;
+    int tmp = elt;
+    for (int i; i < len; i++)
+    {
+        elt = tmp;
+        tmp = data[i];
+        data[i] = elt;
+    }
 }
 
 struct vector *vector_insert(struct vector *v, size_t i, int elt)
 {
-    assert(0 && "not implemented");
+    if (!v || (v->size < i))
+        return NULL;
+
+    if (v->size + 1 >= v->capacity)
+    {
+        v->data = realloc(v, sizeof(int) * v->capacity * 2);
+        if (!v->data)
+            return NULL;
+
+        v->capacity *= 2;
+    }
+
+    if (i == v->size)
+        vector_append(v, elt);
+    else
+    {
+        v->size += 1;
+        insertion(&v->data, v->size, i, elt);
+    }
+    return v;
 }
 
 struct vector *vector_remove(struct vector *v, size_t i)
 {
-    assert(0 && "not implemented");
+    v->size++;
+    i++;
+    return v;
 }
