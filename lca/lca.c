@@ -2,6 +2,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 static int find_elt(int *values, int length, int x)
 {
@@ -53,9 +54,31 @@ int lca(int *values, int length, int p, int q)
     build_list(values, qlist, qindex);
 
     int i = 0;
-    while (plist[i] != qlist[i])
+    int j;
+    while (plist[i] != 0)
     {
+        j = 0;
+        while (qlist[j] != 0)
+        {
+            if (plist[i] == qlist[j])
+            {
+                int res = plist[i];
+                free(plist);
+                free(qlist);
+                return res;
+            }
+            j++;
+        }
         i++;
     }
-    return plist[i];
+    return 0;
+
+}
+
+int main(void)
+{
+    int tree[7] =  { 0, 1, 2, 3, 4, 5, 6 };
+    int res = lca(tree, 7, 1, 3);
+    printf("%d\n", res);
+    return 0;
 }

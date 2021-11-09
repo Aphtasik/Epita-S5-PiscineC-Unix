@@ -2,10 +2,10 @@ CC=gcc
 CFLAGS= -Werror -Wextra -Wall -std=c99 -pedantic -g
 LDFLAGS= -lcriterion
 
-all: main.o lca.o
+all: lca.o
 	$(CC) $^
 
-check: test.o lca.o
+check: lca.o
 	$(CC) $^ $(LDFLAGS)
 	./a.out
 
