@@ -104,6 +104,9 @@ int dlist_get(struct dlist *list, size_t index)
 
 int dlist_insert_at(struct dlist *list, int element, size_t index)
 {
+    if (element < 0)
+        return -1;
+
     size_t i = 0;
     if (list->head)
     {
@@ -140,7 +143,6 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
 
         new->next = item;
         item->prev = new;
-        // TODO: gerer si dernier elt
     }
     else
     {
@@ -247,43 +249,31 @@ void dlist_reverse(struct dlist *list)
 
 struct dlist *dlist_split_at(struct dlist *list, size_t index)
 {
-    if (list->head && index != 0)
+    if (index == 0)
     {
-        struct dlist_item *item = list->head;
-        for (; item && index != 0; item = item->next)
-        {
-            index--;
-        }
-        if (!index)
-        {
-            struct dlist *dl_sec = dlist_init();
-            struct dlist_item *tmp;
-            list->tail = item->prev;
-            while (item)
-            {
-                if (dlist_push_front(dl_sec, item->data) == 0)
-                {
-                    return NULL;
-                }
-
-                if (item->next)
-                {
-                    item->prev->next = item->next;
-                    item->next->prev = item->prev;
-                }
-                else
-                {
-                    item->prev->next = NULL;
-                }
-                tmp = item;
-                item = item->next;
-                free(tmp);
-                list->size -= 1;
-            }
-            return dl_sec;
-        }
+        return dlist_init();
     }
-    return NULL;
+    else if (!list->head || index < 0 || index > list->size)
+    {
+        return NULL;
+    }
+    else
+    {
+        struct dlist *d2 = malloc(sizeof(struct dlist));
+        struct dlist_item *item = list->head;
+
+        for (int i = index; item && i > 0; i--, item = item->next);
+
+        d2->head = item;
+        d2->tail = list->tail;
+        list->tail = item->prev;
+        d2->size = list->size - index;
+        list->size = index;
+        item->prev->next = NULL;
+        item->prev = NULL;
+
+        return d2;
+    }
 }
 
 void dlist_concat(struct dlist *list1, struct dlist *list2)
@@ -307,6 +297,5 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
                 break;
             }
         }
-        list1->size = list1->size + list2->size;
     }
 }

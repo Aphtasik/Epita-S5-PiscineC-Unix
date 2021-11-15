@@ -71,7 +71,7 @@ struct vector *vector_append(struct vector *v, int elt)
 void vector_print(const struct vector *v)
 {
     if (!v)
-        putchar('\n');
+        printf("\n");
     else
     {
         for (size_t i = 0; i < v->size - 1; i++)
