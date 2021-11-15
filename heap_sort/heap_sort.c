@@ -34,13 +34,16 @@ void heapify(int *array, size_t size)
         heapify_rec(array, size, 0);
 }
 
-void heapify2(int *array, size_t size)
-{
-    for (size_t i = 0; i < size; i++)
-        heapify_rec(array, size, 1);
-}
-
 void heap_sort(int *array, size_t size)
 {
-    heapify2(array, size);
+    for (int i = size / 2 - 1; i >= 0; i--)
+    {
+        heapify_rec(array, size, i);
+    }
+
+    for (int i = size - 1; i > 0; i--)
+    {
+        swap(array, i, 0);
+        heapify_rec(array, i, 0);
+    }
 }
