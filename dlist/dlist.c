@@ -126,15 +126,10 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
             return -1;
 
         list->size += 1;
-        if (item->prev && item->next)
+        if (item->prev)
         {
             new->prev = item->prev;
             item->prev->next = new;
-        }
-        else if (!item->next)
-        {
-            new->next = NULL;
-            list->tail = new;
         }
         else
         {
