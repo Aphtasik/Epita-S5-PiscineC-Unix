@@ -18,10 +18,12 @@ static void heapify_rec(int *array, size_t size, size_t i)
     if (left < size && array[left] > array[max])
     {
         max = left;
+        heapify_rec(array, size, max);
     }
     if (right < size && array[right] > array[max])
     {
         max = right;
+        heapify_rec(array, size, max);
     }
     if (max != i)
     {

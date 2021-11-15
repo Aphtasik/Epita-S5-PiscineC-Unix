@@ -14,9 +14,8 @@ static void swap_pairs(struct heap *heap, size_t x1, size_t x2)
 int pop(struct heap *heap)
 {
     if (heap->size <= 0)
-    {
         assert(0);
-    }
+
     int firstVal = heap->array[0];
     swap_pairs(heap, 0, heap->size - 1);
     heap->array[heap->size - 1] = -1;
