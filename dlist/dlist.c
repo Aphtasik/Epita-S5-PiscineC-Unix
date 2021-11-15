@@ -284,18 +284,3 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
         }
     }
 }
-
-int main(void)
-{
-    struct dlist *d = dlist_init();
-    dlist_push_back(d, 1);
-    dlist_push_back(d, 2);
-
-    dlist_reverse(d);
-
-    dlist_remove_at(d, 0);
-    dlist_remove_at(d, 0);
-
-    free(d);
-    return 0;
-}

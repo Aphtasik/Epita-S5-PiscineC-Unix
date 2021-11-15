@@ -106,44 +106,33 @@ int dlist_get(struct dlist *list, size_t index)
 
 int dlist_insert_at(struct dlist *list, int element, size_t index)
 {
+    if (element < 0 || index > list->size)
+        return -1;
+
+    if (!list->head || index == 0)
+        return dlist_push_front(list, element);
+
+    else if (index == list->size)
+        return dlist_push_back(list, element);
+
     size_t i = 0;
-    if (list->head)
-    {
-        list->size += 1;
-        struct dlist_item *new = malloc(sizeof(struct dlist_item));
-        new->data = element;
-        new->next = NULL;
-        new->prev = NULL;
+    struct dlist_item *new = malloc(sizeof(struct dlist_item));
+    if (!new)
+        return -1;
 
-        struct dlist_item *item = list->head;
-        for (; item && index != i; item = item->next)
-        {
-            i++;
-        }
-        if (!item && i != index)
-        {
-            return -1;
-        }
+    new->data = element;
+    new->next = NULL;
+    new->prev = NULL;
+    struct dlist_item *item = list->head;
+    for (; item && index != i; i++, item = item->next)
+        ;
 
-        if (item->prev)
-        {
-            new->prev = item->prev;
-            item->prev->next = new;
-        }
-        else
-        {
-            new->prev = NULL;
-            list->head = new;
-        }
+    list->size += 1;
+    new->prev = item->prev;
+    new->next = item;
+    item->prev->next = new;
+    item->prev = new;
 
-        new->next = item;
-        item->prev = new;
-        // TODO: gerer si dernier elt
-    }
-    else
-    {
-        dlist_push_front(list, element);
-    }
     return 1;
 }
 
@@ -227,6 +216,8 @@ void dlist_reverse(struct dlist *list)
     if (list->head)
     {
         struct dlist_item *item = list->head;
+        list->tail = item;
+
         struct dlist_item *tmp;
         while (item)
         {
@@ -245,44 +236,32 @@ void dlist_reverse(struct dlist *list)
 
 struct dlist *dlist_split_at(struct dlist *list, size_t index)
 {
-    if (list->head && index != 0)
+    if (index == 0)
     {
-        struct dlist_item *item = list->head;
-        for (; item && index != 0; item = item->next)
-        {
-            index--;
-        }
-        if (!index)
-        {
-            struct dlist *dl_sec = dlist_init();
-            struct dlist_item *tmp;
-            list->tail = item->prev;
-            while (item)
-            {
-                if (dlist_push_front(dl_sec, item->data) == 0)
-                {
-                    return NULL;
-                }
-                dl_sec->size += 1;
-
-                if (item->next)
-                {
-                    item->prev->next = item->next;
-                    item->next->prev = item->prev;
-                }
-                else
-                {
-                    item->prev->next = NULL;
-                }
-                tmp = item;
-                item = item->next;
-                free(tmp);
-                list->size -= 1;
-            }
-            return dl_sec;
-        }
+        return dlist_init();
     }
-    return NULL;
+    else if (!list->head || index > list->size)
+    {
+        return NULL;
+    }
+    else
+    {
+        struct dlist *d2 = malloc(sizeof(struct dlist));
+        struct dlist_item *item = list->head;
+
+        for (int i = index; item && i > 0; i--, item = item->next)
+            ;
+
+        d2->head = item;
+        d2->tail = list->tail;
+        list->tail = item->prev;
+        d2->size = list->size - index;
+        list->size = index;
+        item->prev->next = NULL;
+        item->prev = NULL;
+
+        return d2;
+    }
 }
 
 void dlist_concat(struct dlist *list1, struct dlist *list2)
@@ -293,21 +272,18 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
         while (1)
         {
             if (!dlist_push_back(list1, item->data))
-                err(1, "dlsit_concat: Failed Push back");
+                errx(1, "dlsit_concat: Failed Push back");
+            list2->size -= 1;
 
             if (item->next)
             {
                 item = item->next;
-                free(item->prev);
             }
             else
             {
-                free(item);
-                free(list2);
                 break;
             }
         }
-        list1->size = list1->size + list2->size;
     }
 }
 
