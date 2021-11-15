@@ -335,9 +335,8 @@ void dlist_shift(struct dlist *list, int offset)
             {
                 item = list->tail;
                 if (!dlist_push_front(list, item->data))
-                {
                     err(1, "shift: failed push front");
-                }
+
                 item->prev->next = NULL;
                 list->tail = item->prev;
                 free(item);
@@ -353,9 +352,8 @@ void dlist_shift(struct dlist *list, int offset)
             {
                 item = list->head;
                 if (!dlist_push_back(list, item->data))
-                {
                     err(1, "shift: failed push back");
-                }
+
                 item->next->prev = NULL;
                 free(item);
                 list->size -= 1;
@@ -393,9 +391,9 @@ int dlist_remove_eq(struct dlist *list, int element)
 {
     int pos = dlist_find(list, element);
     if (dlist_remove_at(list, pos) == -1)
-    {
         return 0;
-    }
+
+    list->size -= 1;
     return 1;
 }
 
