@@ -6,10 +6,12 @@ struct list *list_add(struct list *l, int e)
 {
     struct list *new = malloc(sizeof(struct list));
     if (!new)
-    {
         return l;
-    }
+
     new->data = e;
+    if (!l)
+        new->next = NULL;
+
     new->next = l;
     return new;
 }
