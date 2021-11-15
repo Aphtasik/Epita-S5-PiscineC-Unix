@@ -393,7 +393,6 @@ int dlist_remove_eq(struct dlist *list, int element)
     if (dlist_remove_at(list, pos) == -1)
         return 0;
 
-    list->size -= 1;
     return 1;
 }
 
