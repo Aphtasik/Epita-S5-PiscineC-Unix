@@ -3,11 +3,11 @@
 
 #include "functional_programming_advanced.h"
 
-static void map(int *array, size_t len, void (*func)(int *))
-{
-    for (size_t i = 0; i < len; i++)
-        func(array + i);
-}
+/** static void map(int *array, size_t len, void (*func)(int *)) */
+/** { */
+/**     for (size_t i = 0; i < len; i++) */
+/**         func(array + i); */
+/** } */
 
 static bool even(int n)
 {
