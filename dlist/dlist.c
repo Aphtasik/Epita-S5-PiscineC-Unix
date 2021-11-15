@@ -112,28 +112,29 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
     {
         struct dlist_item *new = malloc(sizeof(struct dlist_item));
         if (!new)
-        {
             return -1;
-        }
+
         new->data = element;
         new->next = NULL;
         new->prev = NULL;
 
         struct dlist_item *item = list->head;
         for (; item && index != i; item = item->next)
-        {
             i++;
-        }
+
         if (!item || i != index)
-        {
             return -1;
-        }
 
         list->size += 1;
-        if (item->prev)
+        if (item->prev && item->next)
         {
             new->prev = item->prev;
             item->prev->next = new;
+        }
+        else if (!item->next)
+        {
+            new->next = NULL;
+            list->tail = new;
         }
         else
         {
@@ -148,6 +149,7 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
     {
         dlist_push_front(list, element);
     }
+
     return 1;
 }
 
