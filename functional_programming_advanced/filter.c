@@ -1,8 +1,10 @@
 #include "functional_programming_advanced.h"
 
+#include <stdlib.h>
+
 size_t filter(int *array, size_t len, int **out_array, bool (*func)(int))
 {
-    int **out_array = malloc(sizeof(*int));
+    *out_array = malloc(sizeof(int*));
     int out_i = 0;
 
     for (int i = 0; i < len; i++)
