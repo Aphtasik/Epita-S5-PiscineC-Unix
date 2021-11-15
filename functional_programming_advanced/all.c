@@ -9,4 +9,3 @@ bool all(int *array, size_t len, bool (*func)(int))
     }
     return true;
 }
-
