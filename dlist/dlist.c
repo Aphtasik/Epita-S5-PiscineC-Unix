@@ -104,46 +104,31 @@ int dlist_get(struct dlist *list, size_t index)
 
 int dlist_insert_at(struct dlist *list, int element, size_t index)
 {
-    if (element < 0)
+    if (element < 0 || index > list->size)
         return -1;
 
+    if (!list->head || index == 0)
+        return dlist_push_front(list, element);
+
+    else if (index == list->size)
+        return dlist_push_back(list, element);
+
     size_t i = 0;
-    if (list->head)
-    {
-        struct dlist_item *new = malloc(sizeof(struct dlist_item));
-        if (!new)
-            return -1;
+    struct dlist_item *new = malloc(sizeof(struct dlist_item));
+    if (!new)
+        return -1;
 
-        new->data = element;
-        new->next = NULL;
-        new->prev = NULL;
+    new->data = element;
+    new->next = NULL;
+    new->prev = NULL;
+    struct dlist_item *item = list->head;
+    for (; item && index != i; i++, item = item->next);
 
-        struct dlist_item *item = list->head;
-        for (; item && index != i; item = item->next)
-            i++;
-
-        if (!item || i != index)
-            return -1;
-
-        list->size += 1;
-        if (item->prev)
-        {
-            new->prev = item->prev;
-            item->prev->next = new;
-        }
-        else
-        {
-            new->prev = NULL;
-            list->head = new;
-        }
-
-        new->next = item;
-        item->prev = new;
-    }
-    else
-    {
-        dlist_push_front(list, element);
-    }
+    list->size += 1;
+    new->prev = item->prev;
+    new->next = item;
+    item->prev->next = new;
+    item->prev = new;
 
     return 1;
 }
