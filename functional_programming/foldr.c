@@ -8,5 +8,6 @@ int foldr(int *array, size_t len, int (*func)(int, int))
     {
         acc = func(array[len - i], acc);
     }
+    acc = func(array[len - i], acc);
     return acc;
 }
