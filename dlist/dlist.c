@@ -291,11 +291,9 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
             if (item->next)
             {
                 item = item->next;
-                free(item->prev);
             }
             else
             {
-                free(item);
                 break;
             }
         }
