@@ -69,14 +69,14 @@ struct list *list_reverse_sorted_add(struct list *l, int e)
     if (!l)
     {
         new->next = NULL;
-        return head;
+        return new;
     }
     else
     {
         struct list *prev = l;
         if (e >= l->data)
         {
-            new->next = l->next;
+            new->next = l;
             return new;
         }
         l = l->next;
