@@ -28,12 +28,6 @@ static void heapify_rec(int *array, size_t size, size_t i)
     }
 }
 
-void heapify2(int *array, size_t size)
-{
-    if (array)
-        heapify_rec(array, size, 0);
-}
-
 void heapify(int *array, size_t size)
 {
     for (size_t i = 0; i < size; i++)
