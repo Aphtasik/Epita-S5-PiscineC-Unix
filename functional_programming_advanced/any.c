@@ -2,8 +2,7 @@
 
 bool any(int *array, size_t len, bool (*func)(int))
 {
-    bool is_ok = false;
-    for (int i = 0; i < len; i++)
+    for (size_t i = 0; i < len; i++)
     {
         if (func(array[i]))
             return true;

@@ -18,7 +18,7 @@ void print_even(int *array, size_t len)
 {
     int *out_arr = NULL;
     size_t n_len = filter(array, len, &out_arr, even);
-    for (int i = 0; i < n_len; i++)
+    for (size_t i = 0; i < n_len; i++)
         printf("%d\n", out_arr[i]);
     free(out_arr);
 }
