@@ -30,8 +30,8 @@ static void heapify_rec(int *array, size_t size, size_t i)
 
 void heapify(int *array, size_t size)
 {
-    if (array)
-        heapify_rec(array, size, 0);
+    for (int i = 0; i < size; i++)
+        heapify_rec(array, size, i);
 }
 
 void heap_sort(int *array, size_t size)
