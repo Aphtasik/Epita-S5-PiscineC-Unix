@@ -9,9 +9,6 @@ struct list *list_add(struct list *l, int e)
         return l;
 
     new->data = e;
-    if (!l)
-        new->next = NULL;
-
     new->next = l;
     return new;
 }
@@ -69,7 +66,12 @@ struct list *list_reverse_sorted_add(struct list *l, int e)
     struct list *new = malloc(sizeof(struct list));
     new->data = e;
 
-    if (l)
+    if (!l)
+    {
+        new->next = NULL;
+        return head;
+    }
+    else
     {
         struct list *prev = l;
         if (e >= l->data)
@@ -87,14 +89,10 @@ struct list *list_reverse_sorted_add(struct list *l, int e)
                 new->next = l;
                 return head;
             }
+            prev = l;
             l = l->next;
         }
         prev->next = new;
-        new->next = NULL;
-        return head;
-    }
-    else
-    {
         new->next = NULL;
         return head;
     }
