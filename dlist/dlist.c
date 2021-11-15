@@ -122,7 +122,8 @@ int dlist_insert_at(struct dlist *list, int element, size_t index)
     new->next = NULL;
     new->prev = NULL;
     struct dlist_item *item = list->head;
-    for (; item && index != i; i++, item = item->next);
+    for (; item && index != i; i++, item = item->next)
+        ;
 
     list->size += 1;
     new->prev = item->prev;
