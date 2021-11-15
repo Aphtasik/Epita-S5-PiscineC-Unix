@@ -4,6 +4,8 @@
 
 size_t filter(int *array, size_t len, int **out_array, bool (*func)(int))
 {
+    out_array = malloc(sizeof(int *));
+    *out_array = array;
     int out_i = 0;
 
     for (size_t i = 0; i < len; i++)
@@ -14,5 +16,6 @@ size_t filter(int *array, size_t len, int **out_array, bool (*func)(int))
             out_i++;
         }
     }
+    free(out_array);
     return out_i + 1;
 }
