@@ -286,6 +286,7 @@ void dlist_concat(struct dlist *list1, struct dlist *list2)
         {
             if (!dlist_push_back(list1, item->data))
                 errx(1, "dlsit_concat: Failed Push back");
+            list2->size -= 1;
 
             if (item->next)
             {
