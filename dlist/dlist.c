@@ -253,7 +253,7 @@ struct dlist *dlist_split_at(struct dlist *list, size_t index)
     {
         return dlist_init();
     }
-    else if (!list->head || index < 0 || index > list->size)
+    else if (!list->head || index > list->size)
     {
         return NULL;
     }
@@ -262,7 +262,8 @@ struct dlist *dlist_split_at(struct dlist *list, size_t index)
         struct dlist *d2 = malloc(sizeof(struct dlist));
         struct dlist_item *item = list->head;
 
-        for (int i = index; item && i > 0; i--, item = item->next);
+        for (int i = index; item && i > 0; i--, item = item->next)
+            ;
 
         d2->head = item;
         d2->tail = list->tail;
