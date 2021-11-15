@@ -1,7 +1,7 @@
-#include "functional_programming_advanced.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "functional_programming_advanced.h"
 
 static void map(int *array, size_t len, void (*func)(int *))
 {
