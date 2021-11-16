@@ -10,5 +10,4 @@ void *my_memcpy(void *dest, const void *source, size_t num)
         cdest[i] = csrc[i];
     }
     return dest;
-
 }
