@@ -157,6 +157,8 @@ int dlist_find(const struct dlist *list, int element)
 
 int dlist_remove_at(struct dlist *list, size_t index)
 {
+    if (index < 0)
+        return -1;
     size_t i = 0;
     if (list->head)
     {
@@ -501,60 +503,32 @@ unsigned int dlist_levenshtein(struct dlist *list1, struct dlist *list2)
     return res;
 }
 
-/** int main(void) */
-/** { */
-/**     int val; */
-/**  */
-/**     struct dlist *dl = dlist_init(); */
-/**     struct dlist *dl_sec; */
-/**  */
-/**     val = dlist_push_front(dl, 2); */
-/**     val = dlist_push_front(dl, 4); */
-/**     val = dlist_push_front(dl, 5); */
-/**  */
-/**     val = dlist_insert_at(dl, 3, 2); */
-/**  */
-/**     printf("PRINT: (size: %ld)\n", dl->size); */
-/**     dlist_print(dl); */
-/**  */
-/**     printf("GET: %d\n", dlist_get(dl, 1)); */
-/**     printf("FIND: %d\n", dlist_get(dl, 3)); */
-/**     printf("SIZE: %ld\n", dlist_size(dl)); */
-/**  */
-/**     val = dlist_remove_at(dl, 2); */
-/**     printf("PRINT: (size: %ld)\n", dl->size); */
-/**     dlist_print(dl); */
-/**  */
-/**     dlist_reverse(dl); */
-/**     dlist_reverse(dl); */
-/**     printf("PRINT: (size: %ld)\n", dl->size); */
-/**     dlist_print(dl); */
-/**  */
-/**     dl_sec = dlist_split_at(dl, 2); */
-/**     puts("PRINT DL1:"); */
-/**     dlist_print(dl); */
-/**     puts("PRINT DL2:"); */
-/**     dlist_print(dl_sec); */
-/**  */
-/**     dlist_merge(dl, dl_sec); */
-/**     printf("PRINT: (size: %ld)\n", dl->size); */
-/**     dlist_print(dl); */
-/**  */
-/**     dlist_clear(dl_sec); */
-/**     free(dl_sec); */
-/**  */
-/**     printf("PRINT: (size: %ld)\n", dl->size); */
-/**     dlist_print(dl); */
-/**  */
-/**     val = dlist_remove_eq(dl, 5); */
-/**  */
-/**     printf("PRINT: (size: %ld)\n", dl->size); */
-/**     dlist_print(dl); */
-/**  */
-/**  */
-/**  */
-/**     dlist_clear(dl); */
-/**     free(dl); */
-/**     val++; */
-/**     return 0; */
-/** } */
+int main(void)
+{
+    int val;
+
+    struct dlist *dl = dlist_init();
+
+    val = dlist_push_front(dl, 2);
+    val = dlist_push_front(dl, 4);
+    val = dlist_push_front(dl, 5);
+
+    printf("PRINT: (size: %ld)\n", dl->size);
+    dlist_print(dl);
+
+    printf("GET: %d\n", dlist_get(dl, 1));
+    printf("FIND: %d\n", dlist_get(dl, 3));
+    printf("SIZE: %ld\n", dlist_size(dl));
+
+    dlist_remove_eq(dl, 4);
+
+    printf("PRINT: (size: %ld)\n", dl->size);
+    dlist_print(dl);
+
+    printf("SIZE: %ld\n", dlist_size(dl));
+
+    dlist_clear(dl);
+    free(dl);
+    val++;
+    return 0;
+}
