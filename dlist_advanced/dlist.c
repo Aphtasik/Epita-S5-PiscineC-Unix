@@ -365,27 +365,13 @@ void dlist_shift(struct dlist *list, int offset)
 
 int dlist_add_sort(struct dlist *list, int element)
 {
-    if (list->head)
-    {
-        int i = 0;
-        struct dlist_item *item = list->head;
-        while (item && item->data > element)
-        {
-            i++;
-        }
-        if (dlist_insert_at(list, element, i) == -1)
-        {
-            return -1;
-        }
-    }
-    else
-    {
-        if (dlist_push_front(list, element))
-        {
-            return -1;
-        }
-    }
-    return 0;
+    if (!list)
+        return -1;
+    int p = dlist_push_front(list, element);
+    if (!p)
+        return -1;
+    dlist_sort(list);
+    return 1;
 }
 
 int dlist_remove_eq(struct dlist *list, int element)
@@ -510,9 +496,9 @@ int main(void)
 
     struct dlist *dl = dlist_init();
 
-    val = dlist_push_front(dl, 2);
-    val = dlist_push_front(dl, 4);
     val = dlist_push_front(dl, 5);
+    val = dlist_push_front(dl, 4);
+    val = dlist_push_front(dl, 2);
 
     printf("PRINT: (size: %ld)\n", dl->size);
     dlist_print(dl);
@@ -521,7 +507,7 @@ int main(void)
     printf("FIND: %d\n", dlist_get(dl, 3));
     printf("SIZE: %ld\n", dlist_size(dl));
 
-    dlist_shift(dl, -1);
+    dlist_add_sort(dl, 3);
 
     printf("PRINT: (size: %ld)\n", dl->size);
     dlist_print(dl);
