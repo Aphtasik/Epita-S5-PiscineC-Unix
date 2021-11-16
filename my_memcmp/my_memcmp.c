@@ -9,10 +9,12 @@ int my_memcmp(const void *s1, const void *s2, size_t num)
 
     for (size_t i = 0; i < num; i++)
     {
-        if (cs1[si] < cs2[si])
+        if (*cs1 < *cs2)
             return -1;
-        else if (cs1[si] > cs2[si])
+        else if (*cs1 > *cs2)
             return 1;
+        cs1++;
+        cs2++;
     }
 
     if (!cs1 || !cs2)
