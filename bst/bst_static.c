@@ -6,6 +6,9 @@
 struct bst *init(size_t capacity)
 {
     struct bst *new = malloc(sizeof(struct bst));
+    new->capacity = capacity;
+    new->size = 0;
+    new->data = NULL;
     return new;
 }
 
