@@ -2,8 +2,6 @@
 
 int my_memcmp(const void *s1, const void *s2, size_t num)
 {
-    size_t si = 0;
-
     const char *cs1 = s1;
     const char *cs2 = s2;
 
