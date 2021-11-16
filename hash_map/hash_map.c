@@ -1,8 +1,21 @@
 #include "hash_map.h"
 
 #include <stddef.h>
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+size_t hash(const char *key)
+{
+    size_t i = 0;
+    size_t hash = 0;
+
+    for (i = 0; key[i] != '\0'; ++i)
+        hash += key[i];
+    hash += i;
+
+    return hash;
+}
 
 struct hash_map *hash_map_init(size_t size)
 {
@@ -49,34 +62,26 @@ void hash_map_free(struct hash_map *hash_map)
     free(hash_map);
 }
 
-int my_strcmp(const char *s1, const char *s2)
+static int my_strcmp(const char *s1, const char *s2)
 {
     int i = 0;
 
     while (s1[i] != '\0' && s2[i] != '\0')
     {
         if (s1[i] > s2[i])
-        {
             return 1;
-        }
         else if ((s1[i + 1] != '\0') && (s2[i + 1] == '\0'))
-        {
             return 1;
-        }
         else if (s1[i] < s2[i])
-        {
             return -1;
-        }
         else if ((s1[i + 1] == '\0') && (s2[i + 1] != '\0'))
-        {
             return -1;
-        }
         i++;
     }
     return 0;
 }
 
-bool is_in_hash_map(struct pair_list *list, const char *value)
+static bool is_in_hash_map(struct pair_list *list, const char *value)
 {
     for (; list; list = list->next)
     {
@@ -89,23 +94,30 @@ bool is_in_hash_map(struct pair_list *list, const char *value)
 bool hash_map_insert(struct hash_map *hash_map, const char *key, char *value,
                      bool *updated)
 {
-    *updated = false;
+    // Create value to insert
     struct pair_list *p_new = malloc(sizeof(struct pair_list));
     if (!p_new)
         return false;
-
     p_new->key = key;
     p_new->value = value;
     p_new->next = NULL;
 
+    *updated = false;
+
     size_t hashed = hash(key) % hash_map->size;
 
+    // If there is nothing in the linked list
     if (!hash_map->data[hashed])
+    {
         hash_map->data[hashed] = p_new;
+        *updated = true;
+    }
     else
     {
         struct pair_list *p_list = hash_map->data[hashed];
         int is_int = is_in_hash_map(p_list, key);
+
+        // If the element isn't in the linked list
         if (!is_int)
         {
             p_new->next = hash_map->data[hashed];
@@ -166,4 +178,42 @@ bool hash_map_remove(struct hash_map *hash_map, const char *key)
         }
     }
     return false;
+}
+
+void printhm(struct hash_map *hm)
+{
+    printf("size: %li\n", hm->size);
+    struct pair_list **list = hm->data;
+    for (size_t i = 0; i < hm->size; i++)
+    {
+        if (list[i])
+        {
+            struct pair_list *tmp = list[i];
+            while (tmp)
+            {
+                printf("(%s - %s) -> ", tmp->key, tmp->value);
+                tmp = tmp->next;
+            }
+            printf("(null)\n");
+        }
+        else
+            printf("(null)\n");
+    }
+}
+
+int main(void)
+{
+    struct hash_map *hm = hash_map_init(6);
+    bool updated = false;
+    hash_map_insert(hm, "acu", "c moi tchoupi", &updated);
+    /** hash_map_insert(hm, "je", "suce", &updated); */
+    /** hash_map_insert(hm, "sah", "quel plaisir", &updated); */
+    /** hash_map_insert(hm, "nous", "aimons", &updated); */
+    /** hash_map_insert(hm, "nous", "avions", &updated); */
+    /** hash_map_insert(hm, "vous", "naquite", &updated); */
+    /** hash_map_insert(hm, "tu", "souffre", &updated); */
+    /** hash_map_insert(hm, "ski", "je suis tchoupi", &updated); */
+    /** printhm(hm); */
+    /**  */
+    return 0;
 }
