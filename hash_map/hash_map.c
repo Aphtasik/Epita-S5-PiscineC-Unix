@@ -49,53 +49,38 @@ void hash_map_free(struct hash_map *hash_map)
     free(hash_map);
 }
 
-bool hash_map_insert1(struct hash_map *hash_map, const char *key, char *value,
-                     bool *updated)
+int my_strcmp(const char *s1, const char *s2)
 {
-    *updated = false;
+    int i = 0;
 
-    struct pair_list *p_new = malloc(sizeof(struct pair_list));
-    if (!p_new)
+    while (s1[i] != '\0' && s2[i] != '\0')
     {
-        return false;
-    }
-
-    p_new->key = key;
-    p_new->value = value;
-    p_new->next = NULL;
-
-    size_t hashed = hash(key) % hash_map->size;
-
-    if (!hash_map->data[hashed])
-    {
-        hash_map->data[hashed] = p_new;
-    }
-    else
-    {
-        struct pair_list *p_list = hash_map->data[hashed];
-        for (; p_list->next && !(*updated); p_list = p_list->next)
+        if (s1[i] > s2[i])
         {
-            if (p_list->key == key)
-            {
-                p_list->value = value;
-                *updated = true;
-            }
+            return 1;
         }
-
-        if (!updated)
+        else if ((s1[i + 1] != '\0') && (s2[i + 1] == '\0'))
         {
-            p_new->next = hash_map->data[hashed]->next;
-            hash_map->data[hashed] = p_new;
+            return 1;
         }
+        else if (s1[i] < s2[i])
+        {
+            return -1;
+        }
+        else if ((s1[i + 1] == '\0') && (s2[i + 1] != '\0'))
+        {
+            return -1;
+        }
+        i++;
     }
-    return true;
+    return 0;
 }
 
 bool is_in_hash_map(struct pair_list *list, const char *value)
 {
     for (; list; list = list->next)
     {
-        if (strcmp(list->key, value) == 0)
+        if (my_strcmp(list->key, value) == 0)
             return 1;
     }
     return 0;
