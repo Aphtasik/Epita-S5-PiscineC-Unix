@@ -157,8 +157,6 @@ int dlist_find(const struct dlist *list, int element)
 
 int dlist_remove_at(struct dlist *list, size_t index)
 {
-    if (index < 0)
-        return -1;
     size_t i = 0;
     if (list->head)
     {
@@ -392,7 +390,9 @@ int dlist_add_sort(struct dlist *list, int element)
 int dlist_remove_eq(struct dlist *list, int element)
 {
     int pos = dlist_find(list, element);
-    if (dlist_remove_at(list, pos) == -1)
+    if (pos == -1)
+        return 0;
+    else if (dlist_remove_at(list, pos) == -1)
         return 0;
 
     return 1;
