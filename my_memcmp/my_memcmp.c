@@ -14,5 +14,8 @@ int my_memcmp(const void *s1, const void *s2, size_t num)
         else if (cs1[si] > cs2[si])
             return 1;
     }
+
+    if (!cs1 || !cs2)
+        return 1;
     return 0;
 }
