@@ -1,3 +1,6 @@
 #!/bin/sh
 
-echo $1 | tr -d 'rR'
+for var in "$@" 
+do
+    echo "$var" | tr -d 'rR'
+done
