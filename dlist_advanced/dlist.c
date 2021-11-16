@@ -355,6 +355,7 @@ void dlist_shift(struct dlist *list, int offset)
                     err(1, "shift: failed push back");
 
                 item->next->prev = NULL;
+                list->head = item->next;
                 free(item);
                 list->size -= 1;
             }
@@ -520,7 +521,7 @@ int main(void)
     printf("FIND: %d\n", dlist_get(dl, 3));
     printf("SIZE: %ld\n", dlist_size(dl));
 
-    dlist_remove_eq(dl, 4);
+    dlist_shift(dl, -1);
 
     printf("PRINT: (size: %ld)\n", dl->size);
     dlist_print(dl);
