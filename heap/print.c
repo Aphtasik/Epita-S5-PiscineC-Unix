@@ -7,7 +7,7 @@
 #define LEFT(A) (2 * A + 1)
 #define RIGHT(A) (2 * A + 2)
 
-void print_number(size_t n)
+static void print_number(size_t n)
 {
     if (n / 10)
         print_number(n / 10);
@@ -32,7 +32,6 @@ static void print_heap_rec(const struct heap *heap, size_t i)
             print_heap_rec(heap, RIGHT(i));
         }
     }
-
 }
 
 void print_heap(const struct heap *heap)
