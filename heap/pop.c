@@ -11,36 +11,34 @@ static void swap_pairs(struct heap *heap, size_t x1, size_t x2)
     heap->array[x2] = val_tmp;
 }
 
+void heapify(struct heap *h, size_t i)
+{
+    int l = 2 * 1 + 1;
+    int r = 2 * i + 2;
+    int greatest = i;
+    if (l < h->size && h->array[l] > h->array[i])
+        greatest = l;
+    if (r < h->size && h->array[r] > h->array[greatest])
+        greatest = r;
+    if (greatest != i)
+    {
+        swap_pairs(h, i, greatest);
+        heapify(h, greatest);
+    }
+}
 int pop(struct heap *heap)
 {
     if (heap->size <= 0)
         assert(0);
-
-    int firstVal = heap->array[0];
-    swap_pairs(heap, 0, heap->size - 1);
-    heap->array[heap->size - 1] = -1;
-    heap->size--;
-
-    int n = heap->size - 1;
-    int ok = 0;
-    int i = 0;
-    int j = 0;
-    while ((i <= n / 2) && ok == 0)
+    if (heap->size == 1)
     {
-        j = 2 * i;
-        if ((j + 1 <= n) && (heap->array[j + 1] > heap->array[j]))
-        {
-            j++;
-        }
-        if (heap->array[i] < heap->array[j])
-        {
-            swap_pairs(heap, i, j);
-            i = j;
-        }
-        else
-        {
-            ok = 1;
-        }
+        heap->size--;
+        return heap->array[0];
     }
-    return firstVal;
+
+    int max = heap->array[0];
+    heap->array[0] = heap->array[heap->size - 1];
+    heap->size--;
+    heapify(heap, 0);
+    return max;
 }
