@@ -43,12 +43,9 @@ void rot_x(char *s, int x)
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
-        return 0;
-
     int x = atoi(argv[1]);
     char str[2048] =  { 0 };
-    size_t nread = read(0, str, 2048);
+    size_t nread = read(0, str, 2048 - 1);
 
     rot_x(str, x);
 

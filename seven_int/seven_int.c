@@ -24,3 +24,9 @@ int read_ints(int *arr, const char *path)
     close(fd);
     return 1;
 }
+
+int main(void)
+{
+    return 0;
+}
+

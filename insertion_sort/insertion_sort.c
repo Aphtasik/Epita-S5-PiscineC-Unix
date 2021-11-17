@@ -5,9 +5,7 @@ typedef int (*f_cmp)(const void *, const void *);
 void insertion_sort(void **array, f_cmp comp)
 {
     if (!array || !array[0] || !array[1])
-    {
         return;
-    }
 
     int i;
     int j;
