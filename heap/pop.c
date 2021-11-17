@@ -13,9 +13,9 @@ static void swap_pairs(struct heap *heap, size_t x1, size_t x2)
 
 void heapify(struct heap *h, size_t i)
 {
-    int l = 2 * 1 + 1;
-    int r = 2 * i + 2;
-    int greatest = i;
+    size_t l = 2 * 1 + 1;
+    size_t r = 2 * i + 2;
+    size_t greatest = i;
     if (l < h->size && h->array[l] > h->array[i])
         greatest = l;
     if (r < h->size && h->array[r] > h->array[greatest])
