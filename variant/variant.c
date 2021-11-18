@@ -25,6 +25,9 @@ void variant_display(const struct variant *e)
 
 bool variant_equal(const struct variant *left, const struct variant *right)
 {
+    if (!left || !right)
+        return false;
+
     enum type lt = left->type;
     enum type rt = right->type;
 
@@ -96,13 +99,9 @@ float variant_sum(const struct variant *array, size_t len)
         for (size_t i = 0; i < len; i++)
         {
             if (array[i].type == TYPE_INT)
-            {
                 sum += array[i].value.int_v;
-            }
             else
-            {
                 sum += array[i].value.float_v;
-            }
         }
     }
     return sum;
