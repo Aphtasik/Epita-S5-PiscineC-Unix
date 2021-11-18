@@ -5,7 +5,7 @@
 
 int dump_ints(int *arr, const char *path)
 {
-    int fd = open(path, 'w');
+    int fd = open(path, O_APPEND | O_CREAT | O_WRONLY);
     if (fd == -1)
         return 0;
     write(fd, arr, 7 * sizeof(int));
