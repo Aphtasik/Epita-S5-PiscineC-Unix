@@ -6,10 +6,9 @@
 int dump_ints(int *arr, const char *path)
 {
     int fd = open(path, 'w');
-    for (int i = 0; i < 7 * 4; arr += sizeof(char))
-    {
-        write(fd, arr, sizeof(char));
-    }
+    if (fd == -1)
+        return 0;
+    write(fd, arr, 7 * sizeof(int));
     close(fd);
     return 1;
 }
@@ -17,16 +16,9 @@ int dump_ints(int *arr, const char *path)
 int read_ints(int *arr, const char *path)
 {
     int fd = open(path, 'r');
-    for (int i = 0; i < 7 * 4; arr += sizeof(char))
-    {
-        write(fd, arr, sizeof(char));
-    }
+    if (fd == -1)
+        return 0;
+    read(fd, arr, 7 * sizeof(int));
     close(fd);
     return 1;
 }
-
-int main(void)
-{
-    return 0;
-}
-
