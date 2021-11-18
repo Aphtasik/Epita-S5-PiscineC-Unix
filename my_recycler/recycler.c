@@ -21,9 +21,11 @@ struct recycler *recycler_create(size_t block_size, size_t total_size)
     f->next = NULL;
 
     r->block_size = block_size;
-    r->chunk = NULL;
-    r->free = NULL;
-    r->capacity = 0;
+    r->chunk = malloc(sizeof(size_t) * total_size);
+    if (!r->chunk)
+        return NULL;
+    r->free = r->chunk;
+    r->capacity = total_size;
 
     return r;
 }
