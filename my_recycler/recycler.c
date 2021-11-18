@@ -6,9 +6,7 @@ struct recycler *recycler_create(size_t block_size, size_t total_size)
 {
     if (!block_size || block_size % sizeof(size_t) != 0
         || block_size % total_size != 0)
-    {
         return NULL;
-    }
 
     struct recycler *r = malloc(sizeof(struct recycler));
     if (!r)
@@ -24,7 +22,7 @@ struct recycler *recycler_create(size_t block_size, size_t total_size)
     r->chunk = malloc(sizeof(size_t) * total_size);
     if (!r->chunk)
         return NULL;
-    r->free = r->chunk;
+    r->free = free;
     r->capacity = total_size;
 
     return r;

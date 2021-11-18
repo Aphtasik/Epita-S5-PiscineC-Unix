@@ -9,9 +9,7 @@ struct vector *vector_init(size_t n)
 {
     struct vector *new = malloc(sizeof(struct vector));
     if (!new)
-    {
         errx(1, "malloc err");
-    }
 
     new->size = 0;
     new->capacity = n;
@@ -31,11 +29,10 @@ struct vector *vector_resize(struct vector *v, size_t n)
         return NULL;
 
     if (n == v->capacity || n < 1)
-    {
         return v;
-    }
     else if (n < v->size) // TODO: faire un bail en plus
     {
+        v->capacity = n; 
         v->data = realloc(v, sizeof(int) * n);
         if (!v->data)
             return NULL;
@@ -43,6 +40,7 @@ struct vector *vector_resize(struct vector *v, size_t n)
     }
     else
     {
+        v->capacity = n; 
         v->data = realloc(v, sizeof(int) * n);
         if (!v->data)
             return NULL;
