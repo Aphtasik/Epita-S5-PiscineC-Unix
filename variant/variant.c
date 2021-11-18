@@ -25,7 +25,9 @@ void variant_display(const struct variant *e)
 
 bool variant_equal(const struct variant *left, const struct variant *right)
 {
-    if (!left || !right)
+    if (!left && !right)
+        return true;
+    else if (!left || !right)
         return false;
 
     enum type lt = left->type;
