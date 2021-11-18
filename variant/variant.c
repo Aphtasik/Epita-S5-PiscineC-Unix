@@ -94,15 +94,13 @@ float variant_sum(const struct variant *array, size_t len)
 {
     float sum = 0;
 
-    if (array && len > 0)
+    for (size_t i = 0; i < len; i++)
     {
-        for (size_t i = 0; i < len; i++)
-        {
-            if (array[i].type == TYPE_INT)
-                sum += array[i].value.int_v;
-            else
-                sum += array[i].value.float_v;
-        }
+        if (array[i].type == TYPE_INT)
+            sum += array[i].value.int_v;
+        else if (array[i].type == TYPE_FLOAT)
+            sum += array[i].value.float_v;
     }
+
     return sum;
 }
