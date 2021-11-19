@@ -12,7 +12,7 @@ filename=$1
 while read line; do
     var="$(($(printf %s "$line" | wc -m)))"
     if [ "$var" -ge 80 ]; then
-        echo "$line"
+        echo -n "$line"
     fi
 done < "$filename"
 
