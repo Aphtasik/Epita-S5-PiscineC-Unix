@@ -24,7 +24,8 @@ void stdintail(unsigned int n)
 
     // Create buffer
     char str[4096] = { 0 };
-    size_t nread = read(0, str, 4095);
+    if (read(0, str, 4095) == -1)
+        return;
 
     // Vars
     char **lines = malloc(sizeof(char *) * 128);
