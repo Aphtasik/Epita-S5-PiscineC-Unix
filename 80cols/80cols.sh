@@ -10,8 +10,6 @@ fi
 
 while IFS=read line; do
     var=$(echo -n "$line" | wc -c)
-    if [ "$var" -ge 80 ]; then
-        echo "$line"
-    fi
+    [ "$var" -ge 80 ] && echo -n "$line" && echo ""
 done < "$1"
 
