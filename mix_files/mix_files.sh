@@ -20,9 +20,9 @@ i=1
 
 if [ $nb1 -gt $nb2 ]
 then
-    maxfile=$1
     max=$nb1
     min=$nb2
+    maxfile=$1
 fi
 
 while [ $i -ne $((min + 1)) ]
