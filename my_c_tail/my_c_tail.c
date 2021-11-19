@@ -56,12 +56,17 @@ void stdintail(unsigned int n)
         lines[lines_i++] = one;
 
     // Print lines
-    size_t print = lines_i - (size_t)n - 1;
+    size_t print;
+    if (n > lines_i + 1)
+        print = 0;
+    else
+        print = lines_i - (size_t)n;
+
     size_t p;
-    for (p = 0; p < lines_i; p++)
+    for (p = 1; p <= lines_i + 1; p++)
     {
         if (p > print)
-            write(1, lines[p], 1024);
+            write(1, lines[p - 1], 1024);
     }
 
     // Free all
