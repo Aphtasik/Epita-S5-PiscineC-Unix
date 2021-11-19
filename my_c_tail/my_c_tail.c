@@ -25,9 +25,7 @@ void stdintail(unsigned int n)
     // Create buffer
     char str[4096] = { 0 };
     size_t nread = read(0, str, 4095);
-    if (nread == -1)
-        return;
-    //
+
     // Vars
     char **lines = malloc(sizeof(char *) * 128);
     char *one = calloc(1024, sizeof(char));
@@ -60,7 +58,8 @@ void stdintail(unsigned int n)
     size_t p;
     for (p = 0; p < lines_i; p++)
     {
-        write(1, lines[p], 1024);
+        if (p > print)
+            write(1, lines[p], 1024);
     }
 
     // Free all
@@ -70,5 +69,4 @@ void stdintail(unsigned int n)
     }
     free(lines);
     free(one);
-
 }
