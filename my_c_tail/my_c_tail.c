@@ -53,7 +53,10 @@ void stdintail(unsigned int n)
         i++;
     }
     if (one[0] != '\0')
+    {
+        one[one_i] = '\0';
         lines[lines_i++] = one;
+    }
 
     // Print lines
     size_t print;
