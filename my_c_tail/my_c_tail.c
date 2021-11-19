@@ -23,9 +23,10 @@ void stdintail(unsigned int n)
         return;
 
     // Create buffer
-    char str[4096] = { 0 };
-    if (read(0, str, 4095) == -1)
-        return;
+    /** char str[4096] = { 0 }; */
+    /** if (read(0, str, 4095) == -1) */
+    /**     return; */
+    char *str = "ho\nhi\nha\nhaha\n\nhello";
 
     // Vars
     char **lines = malloc(sizeof(char *) * 128);
@@ -52,10 +53,11 @@ void stdintail(unsigned int n)
         one_i++;
         i++;
     }
-    lines[lines_i] = one;
+    if (one[0] != '\0')
+        lines[lines_i++] = one;
 
     // Print lines
-    size_t print = lines_i - (size_t)n;
+    size_t print = lines_i - (size_t)n - 1;
     size_t p;
     for (p = 0; p < lines_i; p++)
     {
@@ -69,5 +71,4 @@ void stdintail(unsigned int n)
         free(lines[p]);
     }
     free(lines);
-    free(one);
 }
