@@ -23,10 +23,9 @@ void stdintail(unsigned int n)
         return;
 
     // Create buffer
-    /** char str[4096] = { 0 }; */
-    /** if (read(0, str, 4095) == -1) */
-    /**     return; */
-    char *str = "ho\nhi\nha\nhaha\n\nhello";
+    char str[4096] = { 0 };
+    if (read(0, str, 4095) == -1)
+        return;
 
     // Vars
     char **lines = malloc(sizeof(char *) * 128);
