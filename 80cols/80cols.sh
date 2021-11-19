@@ -9,7 +9,7 @@ if [ ! -f "$1" ]; then
 fi
 
 filename=$1
-while read line; do
+while IFS=read line; do
     var=$(echo -n "$line" | wc -m)
     if [ "$var" -ge 80 ]; then
         echo "$line"
