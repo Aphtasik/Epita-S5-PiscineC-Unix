@@ -14,5 +14,5 @@ while read line; do
     if [ $var -ge 80 ]; then
         echo $line
     fi
-done < $filename
+done < "$filename"
 
