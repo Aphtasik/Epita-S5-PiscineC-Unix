@@ -11,7 +11,7 @@ fi
 filename=$1
 while read line; do
     var="$(($(printf %s $line | wc -m)))"
-    if [ $var -gt 80 ]; then
+    if [ $var -ge 80 ]; then
         echo $line
     fi
 done < $filename
