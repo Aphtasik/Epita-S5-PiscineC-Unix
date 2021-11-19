@@ -9,10 +9,10 @@ if [ ! -f "$1" ]; then
 fi
 
 filename=$1
-while read line; do
+while read -r line; do
     var="$(($(printf %s "$line" | wc -m)))"
     if [ "$var" -ge 80 ]; then
-        echo -n "$line"
+        echo "$line"
     fi
 done < "$filename"
 
