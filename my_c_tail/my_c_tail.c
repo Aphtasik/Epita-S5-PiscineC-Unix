@@ -3,6 +3,16 @@
 #include <string.h>
 #include <unistd.h>
 
+size_t my_len(char *str)
+{
+    size_t i = 0;
+    while (str[i])
+    {
+        i++;
+    }
+    return i;
+}
+
 size_t count_backslash(char *str)
 {
     size_t count = 0;
@@ -66,10 +76,14 @@ void stdintail(unsigned int n)
         print = lines_i - (size_t)n;
 
     size_t p;
-    for (p = 1; p <= lines_i + 1; p++)
+    size_t len;
+    for (p = 1; p <= lines_i; p++)
     {
         if (p > print)
-            write(1, lines[p - 1], 1024);
+        {
+            len = my_len(lines[p - 1]);
+            write(1, lines[p - 1], len);
+        }
     }
 
     // Free all
