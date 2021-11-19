@@ -8,8 +8,10 @@ if [ ! -f "$1" ]; then
     exit 1
 fi
 
-while IFS=read line; do
+while IFS= read -r line; do
     var=$(echo -n "$line" | wc -c)
-    [ "$var" -ge 80 ] && echo -n "$line" && echo ""
+    if [ "$var" -ge 80 ]; then
+        echo "$line"
+    fi
 done < "$1"
 
