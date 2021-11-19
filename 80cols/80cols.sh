@@ -10,7 +10,7 @@ fi
 
 filename=$1
 while read line; do
-    var="$(($(printf %s $line | wc -m)))"
+    var="$(($(printf %s $line | wc -c)))"
     if [ $var -ge 80 ]; then
         echo $line
     fi
