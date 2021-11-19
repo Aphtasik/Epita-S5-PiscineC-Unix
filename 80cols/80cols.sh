@@ -10,7 +10,7 @@ fi
 
 filename=$1
 while IFS=read line; do
-    var=$(echo -n "$line" | wc -m)
+    var=$(echo -n "$line" | wc -c)
     if [ "$var" -ge 80 ]; then
         echo "$line"
     fi
