@@ -29,7 +29,7 @@ while [ $((min + 1)) -ne $i ]
 do
     head -n $i "$1" | tail -n 1
     head -n $i "$2" | tail -n 1
-    ((i++))
+    i=$((i + 1))
 done
 
 tail -n $((max - i + 1)) $maxfile
