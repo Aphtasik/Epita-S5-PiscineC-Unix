@@ -1,9 +1,8 @@
 void removeLake(char **map, int width_i, int height_i)
 {
     if (map[height_i][width_i] == '#')
-    {
         return;
-    }
+
     map[height_i][width_i] = '#';
     removeLake(map, width_i + 1, height_i);
     removeLake(map, width_i - 1, height_i);
