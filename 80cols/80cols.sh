@@ -9,9 +9,9 @@ if [ ! -f "$1" ]; then
 fi
 
 while IFS= read -r line; do
-    var=$(echo -n "$line" | wc -c)
+    var=$(($(printf %s $line | wc -c)))
     if [ "$var" -ge 80 ]; then
-        echo "$line"
+        $(printf %s $line)
     fi
 done < "$1"
 
